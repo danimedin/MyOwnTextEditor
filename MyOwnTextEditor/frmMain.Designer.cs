@@ -35,7 +35,6 @@
             this.tsmiSave = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSaveAs = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiClose = new System.Windows.Forms.ToolStripMenuItem();
-            this.rtbContent = new System.Windows.Forms.RichTextBox();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiUndo = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDo = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,6 +42,12 @@
             this.tsmiCut = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCopy = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiPaste = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSeach = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiFind = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiReplace = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiQuestion = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.rtbContent = new System.Windows.Forms.RichTextBox();
             this.msMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,7 +55,9 @@
             // 
             this.msMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiFile,
-            this.editToolStripMenuItem});
+            this.editToolStripMenuItem,
+            this.tsmiSeach,
+            this.tsmiQuestion});
             this.msMain.Location = new System.Drawing.Point(0, 0);
             this.msMain.Name = "msMain";
             this.msMain.Size = new System.Drawing.Size(557, 24);
@@ -75,6 +82,7 @@
             this.tsmiNew.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
             this.tsmiNew.Size = new System.Drawing.Size(152, 22);
             this.tsmiNew.Text = "&New";
+            this.tsmiNew.Click += new System.EventHandler(this.tsmiNew_Click);
             // 
             // tsmiOpen
             // 
@@ -82,6 +90,7 @@
             this.tsmiOpen.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.tsmiOpen.Size = new System.Drawing.Size(152, 22);
             this.tsmiOpen.Text = "&Open";
+            this.tsmiOpen.Click += new System.EventHandler(this.tsmiOpen_Click);
             // 
             // tsmiSave
             // 
@@ -89,12 +98,14 @@
             this.tsmiSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.tsmiSave.Size = new System.Drawing.Size(152, 22);
             this.tsmiSave.Text = "&Save";
+            this.tsmiSave.Click += new System.EventHandler(this.tsmiSave_Click);
             // 
             // tsmiSaveAs
             // 
             this.tsmiSaveAs.Name = "tsmiSaveAs";
             this.tsmiSaveAs.Size = new System.Drawing.Size(152, 22);
             this.tsmiSaveAs.Text = "Save As";
+            this.tsmiSaveAs.Click += new System.EventHandler(this.tsmiSaveAs_Click);
             // 
             // tsmiClose
             // 
@@ -103,15 +114,6 @@
             this.tsmiClose.Size = new System.Drawing.Size(152, 22);
             this.tsmiClose.Text = "&Close";
             this.tsmiClose.Click += new System.EventHandler(this.tsmiClose_Click);
-            // 
-            // rtbContent
-            // 
-            this.rtbContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rtbContent.Location = new System.Drawing.Point(0, 24);
-            this.rtbContent.Name = "rtbContent";
-            this.rtbContent.Size = new System.Drawing.Size(557, 416);
-            this.rtbContent.TabIndex = 1;
-            this.rtbContent.Text = "";
             // 
             // editToolStripMenuItem
             // 
@@ -129,40 +131,90 @@
             // tsmiUndo
             // 
             this.tsmiUndo.Name = "tsmiUndo";
-            this.tsmiUndo.Size = new System.Drawing.Size(152, 22);
+            this.tsmiUndo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
+            this.tsmiUndo.Size = new System.Drawing.Size(162, 22);
             this.tsmiUndo.Text = "Undo";
-            this.tsmiUndo.Click += new System.EventHandler(this.tsmiUndo_Click);
             // 
             // tsmiDo
             // 
             this.tsmiDo.Name = "tsmiDo";
-            this.tsmiDo.Size = new System.Drawing.Size(152, 22);
+            this.tsmiDo.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.Y)));
+            this.tsmiDo.Size = new System.Drawing.Size(162, 22);
             this.tsmiDo.Text = "Do";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(159, 6);
             // 
             // tsmiCut
             // 
             this.tsmiCut.Name = "tsmiCut";
-            this.tsmiCut.Size = new System.Drawing.Size(152, 22);
+            this.tsmiCut.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
+            this.tsmiCut.Size = new System.Drawing.Size(162, 22);
             this.tsmiCut.Text = "Cu&t";
-            this.tsmiCut.Click += new System.EventHandler(this.tsmiCut_Click);
             // 
             // tsmiCopy
             // 
             this.tsmiCopy.Name = "tsmiCopy";
-            this.tsmiCopy.Size = new System.Drawing.Size(152, 22);
+            this.tsmiCopy.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+            this.tsmiCopy.Size = new System.Drawing.Size(162, 22);
             this.tsmiCopy.Text = "&Copy";
-          
             // 
             // tsmiPaste
             // 
             this.tsmiPaste.Name = "tsmiPaste";
-            this.tsmiPaste.Size = new System.Drawing.Size(152, 22);
+            this.tsmiPaste.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
+            this.tsmiPaste.Size = new System.Drawing.Size(162, 22);
             this.tsmiPaste.Text = "&Paste";
+            // 
+            // tsmiSeach
+            // 
+            this.tsmiSeach.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiFind,
+            this.tsmiReplace});
+            this.tsmiSeach.Name = "tsmiSeach";
+            this.tsmiSeach.Size = new System.Drawing.Size(54, 20);
+            this.tsmiSeach.Text = "&Search";
+            // 
+            // tsmiFind
+            // 
+            this.tsmiFind.Name = "tsmiFind";
+            this.tsmiFind.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
+            this.tsmiFind.Size = new System.Drawing.Size(158, 22);
+            this.tsmiFind.Text = "Find";
+            // 
+            // tsmiReplace
+            // 
+            this.tsmiReplace.Name = "tsmiReplace";
+            this.tsmiReplace.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.H)));
+            this.tsmiReplace.Size = new System.Drawing.Size(158, 22);
+            this.tsmiReplace.Text = "&Replace";
+            // 
+            // tsmiQuestion
+            // 
+            this.tsmiQuestion.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiAbout});
+            this.tsmiQuestion.Name = "tsmiQuestion";
+            this.tsmiQuestion.Size = new System.Drawing.Size(24, 20);
+            this.tsmiQuestion.Text = "?";
+            // 
+            // tsmiAbout
+            // 
+            this.tsmiAbout.Name = "tsmiAbout";
+            this.tsmiAbout.Size = new System.Drawing.Size(107, 22);
+            this.tsmiAbout.Text = "About";
+            // 
+            // rtbContent
+            // 
+            this.rtbContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbContent.Location = new System.Drawing.Point(0, 24);
+            this.rtbContent.Name = "rtbContent";
+            this.rtbContent.Size = new System.Drawing.Size(557, 416);
+            this.rtbContent.TabIndex = 1;
+            this.rtbContent.Text = "";
+            this.rtbContent.TextChanged += new System.EventHandler(this.rtbTextChanged);
             // 
             // frmMain
             // 
@@ -198,6 +250,11 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiCut;
         private System.Windows.Forms.ToolStripMenuItem tsmiCopy;
         private System.Windows.Forms.ToolStripMenuItem tsmiPaste;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSeach;
+        private System.Windows.Forms.ToolStripMenuItem tsmiFind;
+        private System.Windows.Forms.ToolStripMenuItem tsmiReplace;
+        private System.Windows.Forms.ToolStripMenuItem tsmiQuestion;
+        private System.Windows.Forms.ToolStripMenuItem tsmiAbout;
     }
 }
 
