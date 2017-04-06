@@ -86,6 +86,7 @@ namespace MyOwnTextEditor
                     this.rtbContent.Text = System.IO.File.ReadAllText(openFileDialog.FileName);
                     this.content.FileName = openFileDialog.FileName;
                     this.content.offDirtyBit();
+                    this.Text = "MyOwnTextEditor" + this.content.FileName;
                 }
                 catch (Exception exception)
                 {
@@ -119,7 +120,9 @@ namespace MyOwnTextEditor
                     System.IO.File.WriteAllText(saveFileDialog.FileName, this.rtbContent.Text);
                     this.content.FileName = saveFileDialog.FileName;
                     this.content.offDirtyBit();
-                }catch (Exception exception)
+                    this.Text = "MyOwnTextEditor - " + this.content.FileName;
+                }
+                catch (Exception exception)
                 {
                     MessageBox.Show("There was an error writing the file");
                 }
