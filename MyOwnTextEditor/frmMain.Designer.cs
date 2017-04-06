@@ -28,26 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.msMain = new System.Windows.Forms.MenuStrip();
             this.tsmiFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiNew = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiOpen = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiSave = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSaveAs = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiExit = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiUndo = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiDo = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsmiCut = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiCopy = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiPaste = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSeach = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiFind = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiReplace = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiQuestion = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.rtbContent = new System.Windows.Forms.RichTextBox();
+            this.tsmiNew = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiOpen = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiUndo = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDo = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCut = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCopy = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiPaste = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,44 +77,12 @@
             this.tsmiFile.Size = new System.Drawing.Size(37, 20);
             this.tsmiFile.Text = "&File";
             // 
-            // tsmiNew
-            // 
-            this.tsmiNew.Name = "tsmiNew";
-            this.tsmiNew.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.tsmiNew.Size = new System.Drawing.Size(152, 22);
-            this.tsmiNew.Text = "&New";
-            this.tsmiNew.Click += new System.EventHandler(this.tsmiNew_Click);
-            // 
-            // tsmiOpen
-            // 
-            this.tsmiOpen.Name = "tsmiOpen";
-            this.tsmiOpen.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.tsmiOpen.Size = new System.Drawing.Size(152, 22);
-            this.tsmiOpen.Text = "&Open";
-            this.tsmiOpen.Click += new System.EventHandler(this.tsmiOpen_Click);
-            // 
-            // tsmiSave
-            // 
-            this.tsmiSave.Name = "tsmiSave";
-            this.tsmiSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.tsmiSave.Size = new System.Drawing.Size(152, 22);
-            this.tsmiSave.Text = "&Save";
-            this.tsmiSave.Click += new System.EventHandler(this.tsmiSave_Click);
-            // 
             // tsmiSaveAs
             // 
             this.tsmiSaveAs.Name = "tsmiSaveAs";
-            this.tsmiSaveAs.Size = new System.Drawing.Size(152, 22);
+            this.tsmiSaveAs.Size = new System.Drawing.Size(146, 22);
             this.tsmiSaveAs.Text = "Save As";
             this.tsmiSaveAs.Click += new System.EventHandler(this.tsmiSaveAs_Click);
-            // 
-            // tsmiExit
-            // 
-            this.tsmiExit.Name = "tsmiExit";
-            this.tsmiExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.tsmiExit.Size = new System.Drawing.Size(152, 22);
-            this.tsmiExit.Text = "&Exit";
-            this.tsmiExit.Click += new System.EventHandler(this.tsmiClose_Click);
             // 
             // editToolStripMenuItem
             // 
@@ -128,46 +97,10 @@
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "&Edit";
             // 
-            // tsmiUndo
-            // 
-            this.tsmiUndo.Name = "tsmiUndo";
-            this.tsmiUndo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.tsmiUndo.Size = new System.Drawing.Size(162, 22);
-            this.tsmiUndo.Text = "Undo";
-            // 
-            // tsmiDo
-            // 
-            this.tsmiDo.Name = "tsmiDo";
-            this.tsmiDo.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.Y)));
-            this.tsmiDo.Size = new System.Drawing.Size(162, 22);
-            this.tsmiDo.Text = "Do";
-            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(159, 6);
-            // 
-            // tsmiCut
-            // 
-            this.tsmiCut.Name = "tsmiCut";
-            this.tsmiCut.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.tsmiCut.Size = new System.Drawing.Size(162, 22);
-            this.tsmiCut.Text = "Cu&t";
-            // 
-            // tsmiCopy
-            // 
-            this.tsmiCopy.Name = "tsmiCopy";
-            this.tsmiCopy.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.tsmiCopy.Size = new System.Drawing.Size(162, 22);
-            this.tsmiCopy.Text = "&Copy";
-            // 
-            // tsmiPaste
-            // 
-            this.tsmiPaste.Name = "tsmiPaste";
-            this.tsmiPaste.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.tsmiPaste.Size = new System.Drawing.Size(162, 22);
-            this.tsmiPaste.Text = "&Paste";
             // 
             // tsmiSeach
             // 
@@ -180,6 +113,7 @@
             // 
             // tsmiFind
             // 
+            this.tsmiFind.Image = global::MyOwnTextEditor.icons.find;
             this.tsmiFind.Name = "tsmiFind";
             this.tsmiFind.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
             this.tsmiFind.Size = new System.Drawing.Size(158, 22);
@@ -215,6 +149,83 @@
             this.rtbContent.TabIndex = 1;
             this.rtbContent.Text = "";
             this.rtbContent.TextChanged += new System.EventHandler(this.rtbTextChanged);
+            // 
+            // tsmiNew
+            // 
+            this.tsmiNew.Image = global::MyOwnTextEditor.icons._new;
+            this.tsmiNew.Name = "tsmiNew";
+            this.tsmiNew.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.tsmiNew.Size = new System.Drawing.Size(146, 22);
+            this.tsmiNew.Text = "&New";
+            this.tsmiNew.Click += new System.EventHandler(this.tsmiNew_Click);
+            // 
+            // tsmiOpen
+            // 
+            this.tsmiOpen.Image = ((System.Drawing.Image)(resources.GetObject("tsmiOpen.Image")));
+            this.tsmiOpen.Name = "tsmiOpen";
+            this.tsmiOpen.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.tsmiOpen.Size = new System.Drawing.Size(146, 22);
+            this.tsmiOpen.Text = "&Open";
+            this.tsmiOpen.Click += new System.EventHandler(this.tsmiOpen_Click);
+            // 
+            // tsmiSave
+            // 
+            this.tsmiSave.Image = ((System.Drawing.Image)(resources.GetObject("tsmiSave.Image")));
+            this.tsmiSave.Name = "tsmiSave";
+            this.tsmiSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.tsmiSave.Size = new System.Drawing.Size(146, 22);
+            this.tsmiSave.Text = "&Save";
+            this.tsmiSave.Click += new System.EventHandler(this.tsmiSave_Click);
+            // 
+            // tsmiExit
+            // 
+            this.tsmiExit.Image = ((System.Drawing.Image)(resources.GetObject("tsmiExit.Image")));
+            this.tsmiExit.Name = "tsmiExit";
+            this.tsmiExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
+            this.tsmiExit.Size = new System.Drawing.Size(146, 22);
+            this.tsmiExit.Text = "&Exit";
+            this.tsmiExit.Click += new System.EventHandler(this.tsmiClose_Click);
+            // 
+            // tsmiUndo
+            // 
+            this.tsmiUndo.Image = global::MyOwnTextEditor.icons.undo;
+            this.tsmiUndo.Name = "tsmiUndo";
+            this.tsmiUndo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
+            this.tsmiUndo.Size = new System.Drawing.Size(162, 22);
+            this.tsmiUndo.Text = "Undo";
+            // 
+            // tsmiDo
+            // 
+            this.tsmiDo.Image = global::MyOwnTextEditor.icons.redo;
+            this.tsmiDo.Name = "tsmiDo";
+            this.tsmiDo.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.Y)));
+            this.tsmiDo.Size = new System.Drawing.Size(162, 22);
+            this.tsmiDo.Text = "Do";
+            // 
+            // tsmiCut
+            // 
+            this.tsmiCut.Image = global::MyOwnTextEditor.icons.Cut;
+            this.tsmiCut.Name = "tsmiCut";
+            this.tsmiCut.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
+            this.tsmiCut.Size = new System.Drawing.Size(162, 22);
+            this.tsmiCut.Text = "Cu&t";
+            // 
+            // tsmiCopy
+            // 
+            this.tsmiCopy.Image = global::MyOwnTextEditor.icons.copy;
+            this.tsmiCopy.Name = "tsmiCopy";
+            this.tsmiCopy.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+            this.tsmiCopy.Size = new System.Drawing.Size(162, 22);
+            this.tsmiCopy.Text = "&Copy";
+            // 
+            // tsmiPaste
+            // 
+            this.tsmiPaste.Image = global::MyOwnTextEditor.icons.paste;
+            this.tsmiPaste.Name = "tsmiPaste";
+            this.tsmiPaste.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
+            this.tsmiPaste.Size = new System.Drawing.Size(162, 22);
+            this.tsmiPaste.Text = "&Paste";
             // 
             // frmMain
             // 
