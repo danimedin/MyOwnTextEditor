@@ -34,7 +34,7 @@
             this.tsmiOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSave = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSaveAs = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiClose = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiExit = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiUndo = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDo = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,7 +71,7 @@
             this.tsmiOpen,
             this.tsmiSave,
             this.tsmiSaveAs,
-            this.tsmiClose});
+            this.tsmiExit});
             this.tsmiFile.Name = "tsmiFile";
             this.tsmiFile.Size = new System.Drawing.Size(37, 20);
             this.tsmiFile.Text = "&File";
@@ -107,13 +107,13 @@
             this.tsmiSaveAs.Text = "Save As";
             this.tsmiSaveAs.Click += new System.EventHandler(this.tsmiSaveAs_Click);
             // 
-            // tsmiClose
+            // tsmiExit
             // 
-            this.tsmiClose.Name = "tsmiClose";
-            this.tsmiClose.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.tsmiClose.Size = new System.Drawing.Size(152, 22);
-            this.tsmiClose.Text = "&Close";
-            this.tsmiClose.Click += new System.EventHandler(this.tsmiClose_Click);
+            this.tsmiExit.Name = "tsmiExit";
+            this.tsmiExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
+            this.tsmiExit.Size = new System.Drawing.Size(152, 22);
+            this.tsmiExit.Text = "&Exit";
+            this.tsmiExit.Click += new System.EventHandler(this.tsmiClose_Click);
             // 
             // editToolStripMenuItem
             // 
@@ -226,6 +226,7 @@
             this.MainMenuStrip = this.msMain;
             this.Name = "frmMain";
             this.Text = "MyOwnTextEditor";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.myOwnForm_Closing);
             this.msMain.ResumeLayout(false);
             this.msMain.PerformLayout();
             this.ResumeLayout(false);
@@ -241,7 +242,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiOpen;
         private System.Windows.Forms.ToolStripMenuItem tsmiSave;
         private System.Windows.Forms.ToolStripMenuItem tsmiSaveAs;
-        private System.Windows.Forms.ToolStripMenuItem tsmiClose;
+        private System.Windows.Forms.ToolStripMenuItem tsmiExit;
         private System.Windows.Forms.RichTextBox rtbContent;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmiUndo;

@@ -29,12 +29,7 @@ namespace MyOwnTextEditor
 
             if (content.DirtyBit)
             {
-                switch (MessageBox.Show(
-                    "Do you want to save changes to the document "
-                    + content.FileName,
-                    "Do you want to save the document",
-                    MessageBoxButtons.YesNoCancel,
-                    MessageBoxIcon.Exclamation))
+                switch (this.showSaveQuestion())
                 { 
                     case DialogResult.Yes:
                         
@@ -54,8 +49,35 @@ namespace MyOwnTextEditor
         }
         private void tsmiOpen_Click(object sender, EventArgs e)
         {
-            
 
+            if (content.DirtyBit)
+            {
+                switch (this.showSaveQuestion())
+                {
+                    case DialogResult.Yes:
+
+                        this.tsmiSave_Click(sender, e);
+                        this.rtbContent.Text = string.Empty;
+                        content = new Model.Content();
+                        this.open();
+                        break;
+                    case DialogResult.No:
+
+                        this.rtbContent.Text = string.Empty;
+                        content = new Model.Content();
+                        this.open();
+                        break;
+                }
+
+            }
+            else {
+                this.open(); 
+            }
+          
+
+        }
+         private void open()
+        {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -72,7 +94,6 @@ namespace MyOwnTextEditor
             }
 
         }
-
         private void tsmiSave_Click(object sender, EventArgs e)
         {
             if (this.content.FileName == String.Empty)
@@ -108,6 +129,36 @@ namespace MyOwnTextEditor
         private void rtbTextChanged(object sender, EventArgs e)
         {
             this.content.onDirtyBit();
+        }
+
+        private void myOwnForm_Closing(object sender, FormClosingEventArgs e)
+        {
+            if (content.DirtyBit)
+            {
+                switch (this.showSaveQuestion())
+                {
+                    case DialogResult.Yes:
+
+                        this.tsmiSave_Click(sender, e);                      
+                       
+                        break;
+                    case DialogResult.Cancel:
+                        e.Cancel=true;
+                        break;
+
+                        
+                }
+
+            }
+        }
+        private DialogResult showSaveQuestion()
+        {
+            return MessageBox.Show(
+                   "Do you want to save changes to the document "
+                   + content.FileName,
+                   "Do you want to save the document",
+                   MessageBoxButtons.YesNoCancel,
+                   MessageBoxIcon.Exclamation);
         }
     }
 }
