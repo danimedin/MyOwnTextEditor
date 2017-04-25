@@ -48,8 +48,26 @@
             this.tsmiReplace = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiQuestion = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tsbNew = new System.Windows.Forms.ToolStripButton();
+            this.tsbOpen = new System.Windows.Forms.ToolStripButton();
+            this.tsbSave = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbCut = new System.Windows.Forms.ToolStripButton();
+            this.tsbCopy = new System.Windows.Forms.ToolStripButton();
+            this.tsbPaste = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbUndo = new System.Windows.Forms.ToolStripButton();
+            this.tsbRedo = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.tcMain = new System.Windows.Forms.TabControl();
+            this.tp1 = new System.Windows.Forms.TabPage();
             this.rtbContent = new System.Windows.Forms.RichTextBox();
+            this.tpPlus = new System.Windows.Forms.TabPage();
             this.msMain.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
+            this.tcMain.SuspendLayout();
+            this.tp1.SuspendLayout();
             this.SuspendLayout();
             // 
             // msMain
@@ -82,7 +100,7 @@
             this.tsmiNew.Image = global::MyOwnTextEditor.icons._new;
             this.tsmiNew.Name = "tsmiNew";
             this.tsmiNew.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.tsmiNew.Size = new System.Drawing.Size(146, 22);
+            this.tsmiNew.Size = new System.Drawing.Size(186, 22);
             this.tsmiNew.Text = "&New";
             this.tsmiNew.Click += new System.EventHandler(this.tsmiNew_Click);
             // 
@@ -100,7 +118,7 @@
             this.tsmiSave.Image = ((System.Drawing.Image)(resources.GetObject("tsmiSave.Image")));
             this.tsmiSave.Name = "tsmiSave";
             this.tsmiSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.tsmiSave.Size = new System.Drawing.Size(146, 22);
+            this.tsmiSave.Size = new System.Drawing.Size(186, 22);
             this.tsmiSave.Text = "&Save";
             this.tsmiSave.Click += new System.EventHandler(this.tsmiSave_Click);
             // 
@@ -118,7 +136,7 @@
             this.tsmiExit.Image = ((System.Drawing.Image)(resources.GetObject("tsmiExit.Image")));
             this.tsmiExit.Name = "tsmiExit";
             this.tsmiExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.tsmiExit.Size = new System.Drawing.Size(146, 22);
+            this.tsmiExit.Size = new System.Drawing.Size(186, 22);
             this.tsmiExit.Text = "&Exit";
             this.tsmiExit.Click += new System.EventHandler(this.tsmiClose_Click);
             // 
@@ -219,22 +237,172 @@
             this.tsmiAbout.Size = new System.Drawing.Size(107, 22);
             this.tsmiAbout.Text = "About";
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbNew,
+            this.tsbOpen,
+            this.tsbSave,
+            this.toolStripSeparator2,
+            this.tsbCut,
+            this.tsbCopy,
+            this.tsbPaste,
+            this.toolStripSeparator3,
+            this.tsbUndo,
+            this.tsbRedo});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(557, 25);
+            this.toolStrip1.TabIndex = 2;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // tsbNew
+            // 
+            this.tsbNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbNew.Image = global::MyOwnTextEditor.icons._new;
+            this.tsbNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbNew.Name = "tsbNew";
+            this.tsbNew.Size = new System.Drawing.Size(23, 22);
+            this.tsbNew.Text = "toolStripButton2";
+            this.tsbNew.Click += new System.EventHandler(this.tsbNew_Click);
+            // 
+            // tsbOpen
+            // 
+            this.tsbOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbOpen.Image = global::MyOwnTextEditor.icons.open;
+            this.tsbOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbOpen.Name = "tsbOpen";
+            this.tsbOpen.Size = new System.Drawing.Size(23, 22);
+            this.tsbOpen.Text = "toolStripButton2";
+            this.tsbOpen.Click += new System.EventHandler(this.tsbOpen_Click);
+            // 
+            // tsbSave
+            // 
+            this.tsbSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbSave.Image = global::MyOwnTextEditor.icons.save;
+            this.tsbSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbSave.Name = "tsbSave";
+            this.tsbSave.Size = new System.Drawing.Size(23, 22);
+            this.tsbSave.Text = "toolStripButton3";
+            this.tsbSave.Click += new System.EventHandler(this.tsbSave_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // tsbCut
+            // 
+            this.tsbCut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbCut.Image = global::MyOwnTextEditor.icons.Cut;
+            this.tsbCut.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbCut.Name = "tsbCut";
+            this.tsbCut.Size = new System.Drawing.Size(23, 22);
+            this.tsbCut.Text = "toolStripButton4";
+            // 
+            // tsbCopy
+            // 
+            this.tsbCopy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbCopy.Image = global::MyOwnTextEditor.icons.copy;
+            this.tsbCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbCopy.Name = "tsbCopy";
+            this.tsbCopy.Size = new System.Drawing.Size(23, 22);
+            this.tsbCopy.Text = "toolStripButton5";
+            // 
+            // tsbPaste
+            // 
+            this.tsbPaste.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbPaste.Image = global::MyOwnTextEditor.icons.paste;
+            this.tsbPaste.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbPaste.Name = "tsbPaste";
+            this.tsbPaste.Size = new System.Drawing.Size(23, 22);
+            this.tsbPaste.Text = "toolStripButton6";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // tsbUndo
+            // 
+            this.tsbUndo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbUndo.Image = global::MyOwnTextEditor.icons.undo;
+            this.tsbUndo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbUndo.Name = "tsbUndo";
+            this.tsbUndo.Size = new System.Drawing.Size(23, 22);
+            this.tsbUndo.Text = "toolStripButton7";
+            // 
+            // tsbRedo
+            // 
+            this.tsbRedo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbRedo.Image = global::MyOwnTextEditor.icons.redo;
+            this.tsbRedo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbRedo.Name = "tsbRedo";
+            this.tsbRedo.Size = new System.Drawing.Size(23, 22);
+            this.tsbRedo.Text = "toolStripButton8";
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "toolStripButton1";
+            // 
+            // tcMain
+            // 
+            this.tcMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tcMain.Controls.Add(this.tp1);
+            this.tcMain.Controls.Add(this.tpPlus);
+            this.tcMain.ItemSize = new System.Drawing.Size(68, 35);
+            this.tcMain.Location = new System.Drawing.Point(0, 52);
+            this.tcMain.Name = "tcMain";
+            this.tcMain.SelectedIndex = 0;
+            this.tcMain.Size = new System.Drawing.Size(557, 387);
+            this.tcMain.TabIndex = 3;
+            this.tcMain.SelectedIndexChanged += new System.EventHandler(this.tcMain_selectedIndexChanged);
+            // 
+            // tp1
+            // 
+            this.tp1.Controls.Add(this.rtbContent);
+            this.tp1.Location = new System.Drawing.Point(4, 39);
+            this.tp1.Name = "tp1";
+            this.tp1.Padding = new System.Windows.Forms.Padding(3);
+            this.tp1.Size = new System.Drawing.Size(549, 344);
+            this.tp1.TabIndex = 0;
+            this.tp1.Text = "new file";
+            this.tp1.UseVisualStyleBackColor = true;
+            // 
             // rtbContent
             // 
             this.rtbContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rtbContent.Location = new System.Drawing.Point(0, 24);
+            this.rtbContent.Location = new System.Drawing.Point(3, 3);
             this.rtbContent.Name = "rtbContent";
-            this.rtbContent.Size = new System.Drawing.Size(557, 416);
-            this.rtbContent.TabIndex = 1;
+            this.rtbContent.Size = new System.Drawing.Size(543, 338);
+            this.rtbContent.TabIndex = 0;
             this.rtbContent.Text = "";
             this.rtbContent.TextChanged += new System.EventHandler(this.rtbTextChanged);
+            // 
+            // tpPlus
+            // 
+            this.tpPlus.Location = new System.Drawing.Point(4, 39);
+            this.tpPlus.Name = "tpPlus";
+            this.tpPlus.Padding = new System.Windows.Forms.Padding(3);
+            this.tpPlus.Size = new System.Drawing.Size(549, 344);
+            this.tpPlus.TabIndex = 1;
+            this.tpPlus.Text = "+";
+            this.tpPlus.UseVisualStyleBackColor = true;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(557, 440);
-            this.Controls.Add(this.rtbContent);
+            this.Controls.Add(this.tcMain);
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.msMain);
             this.MainMenuStrip = this.msMain;
             this.Name = "frmMain";
@@ -242,6 +410,10 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.myOwnForm_Closing);
             this.msMain.ResumeLayout(false);
             this.msMain.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
+            this.tcMain.ResumeLayout(false);
+            this.tp1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -256,7 +428,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiSave;
         private System.Windows.Forms.ToolStripMenuItem tsmiSaveAs;
         private System.Windows.Forms.ToolStripMenuItem tsmiExit;
-        private System.Windows.Forms.RichTextBox rtbContent;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmiUndo;
         private System.Windows.Forms.ToolStripMenuItem tsmiDo;
@@ -269,6 +440,22 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiReplace;
         private System.Windows.Forms.ToolStripMenuItem tsmiQuestion;
         private System.Windows.Forms.ToolStripMenuItem tsmiAbout;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton tsbNew;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton tsbOpen;
+        private System.Windows.Forms.ToolStripButton tsbSave;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton tsbCut;
+        private System.Windows.Forms.ToolStripButton tsbCopy;
+        private System.Windows.Forms.ToolStripButton tsbPaste;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton tsbUndo;
+        private System.Windows.Forms.ToolStripButton tsbRedo;
+        private System.Windows.Forms.TabControl tcMain;
+        private System.Windows.Forms.TabPage tp1;
+        private System.Windows.Forms.TabPage tpPlus;
+        private System.Windows.Forms.RichTextBox rtbContent;
     }
 }
 

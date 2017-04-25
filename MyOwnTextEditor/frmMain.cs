@@ -12,81 +12,64 @@ namespace MyOwnTextEditor
 {
     public partial class frmMain : Form
     {
-        private Model.Content content;
+
+        private List<Model.Content> files;
+       
         public frmMain()
         {
             InitializeComponent();
-            content = new Model.Content();
+            files = new List<Model.Content>();
+            files.Add(new Model.Content());
         }
 
         private void tsmiClose_Click(object sender, EventArgs e)
         {
             this.Close();
-        }      
+        }
 
         private void tsmiNew_Click(object sender, EventArgs e)
         {
 
-            if (content.DirtyBit)
-            {
-                switch (this.showSaveQuestion())
-                { 
-                    case DialogResult.Yes:
-                        
-                            this.tsmiSave_Click(sender, e);
-                            this.rtbContent.Text = string.Empty;
-                            content = new Model.Content();
-                    break;
-                    case DialogResult.No:
-                  
-                        this.rtbContent.Text = string.Empty;
-                        content = new Model.Content();
-                        break;
-                }
-            }
-
             
+            this.tcMain_selectedIndexChanged(null, null);
+
         }
         private void tsmiOpen_Click(object sender, EventArgs e)
         {
 
-            if (content.DirtyBit)
-            {
-                switch (this.showSaveQuestion())
-                {
-                    case DialogResult.Yes:
-
-                        this.tsmiSave_Click(sender, e);
-                        this.rtbContent.Text = string.Empty;
-                        content = new Model.Content();
-                        this.open();
-                        break;
-                    case DialogResult.No:
-
-                        this.rtbContent.Text = string.Empty;
-                        content = new Model.Content();
-                        this.open();
-                        break;
-                }
-
-            }
-            else {
-                this.open(); 
-            }
           
+            this.newTabPage();
+            this.open();
 
         }
-         private void open()
+        private void open()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
-                    this.rtbContent.Text = System.IO.File.ReadAllText(openFileDialog.FileName);
-                    this.content.FileName = openFileDialog.FileName;
-                    this.content.offDirtyBit();
-                    this.Text = "MyOwnTextEditor" + this.content.FileName;
+                    TabPage selectedTab = this.tcMain.SelectedTab;
+                    foreach (Control control in selectedTab.Controls)
+                    {
+                        try
+                        {
+                            RichTextBox richTextBox = (RichTextBox)control;
+                            richTextBox.Text = System.IO.File.ReadAllText(openFileDialog.FileName);
+
+                            Model.Content content = files[this.tcMain.SelectedIndex];
+                            content.FileName = openFileDialog.FileName;
+                            content.offDirtyBit();
+                            
+                            this.Text = "MyOwnTextEditor - " + content.FileName;
+                            selectedTab.Text = content.FileName;
+                            
+                        }
+                        catch (InvalidCastException e) { }
+
+                    }
+                                           
+                    
                 }
                 catch (Exception exception)
                 {
@@ -97,17 +80,35 @@ namespace MyOwnTextEditor
         }
         private void tsmiSave_Click(object sender, EventArgs e)
         {
-            if (this.content.FileName == String.Empty)
+            if (files[tcMain.SelectedIndex].FileName == String.Empty)
             {
                 this.tsmiSaveAs_Click(sender, e);
             }
             else
             {
-                System.IO.File.WriteAllText(content.FileName, this.rtbContent.Text);
-                this.content.offDirtyBit();
+                TabPage selectedTab = this.tcMain.SelectedTab;
+                foreach (Control control in selectedTab.Controls)
+                {
+                    try
+                    {
+                        RichTextBox richTextBox = (RichTextBox)control;
+                        System.IO.File.WriteAllText(this.files[this.tcMain.SelectedIndex].FileName, richTextBox.Text);
+                        Model.Content content = files[this.tcMain.SelectedIndex];                        
+                        content.offDirtyBit();
+                        selectedTab.Text = content.FileName;
+
+                        
+
+                    }
+                    catch (InvalidCastException ex) { }
+
+                }
+                
+                
 
             }
-                 
+
+
         }
 
         private void tsmiSaveAs_Click(object sender, EventArgs e)
@@ -117,51 +118,119 @@ namespace MyOwnTextEditor
             {
                 try
                 {
-                    System.IO.File.WriteAllText(saveFileDialog.FileName, this.rtbContent.Text);
-                    this.content.FileName = saveFileDialog.FileName;
-                    this.content.offDirtyBit();
-                    this.Text = "MyOwnTextEditor - " + this.content.FileName;
+                    TabPage selectedTab = this.tcMain.SelectedTab;
+                    foreach (Control control in selectedTab.Controls)
+                    {
+                        try
+                        {
+                            RichTextBox richTextBox = (RichTextBox)control;
+                            System.IO.File.WriteAllText(saveFileDialog.FileName, richTextBox.Text);
+                            Model.Content content = files[this.tcMain.SelectedIndex];
+                            content.FileName = saveFileDialog.FileName;
+                            content.offDirtyBit();
+                            this.Text = "MyOwnTextEditor - " + content.FileName;
+                            this.tcMain.SelectedTab.Text = content.FileName;
+
+
+
+                        }
+                        catch (InvalidCastException ex) { }
+
+                    }
+                   
                 }
                 catch (Exception exception)
                 {
                     MessageBox.Show("There was an error writing the file");
                 }
             }
+
         }
 
         private void rtbTextChanged(object sender, EventArgs e)
         {
-            this.content.onDirtyBit();
+            if  (! this.files[this.tcMain.SelectedIndex].DirtyBit )
+            {
+                this.files[this.tcMain.SelectedIndex].onDirtyBit();
+                this.tcMain.SelectedTab.Text = this.tcMain.SelectedTab.Text + '*';
+            }
+            
         }
 
         private void myOwnForm_Closing(object sender, FormClosingEventArgs e)
         {
-            if (content.DirtyBit)
-            {
-                switch (this.showSaveQuestion())
+            int i = 0;
+            foreach (Model.Content content in this.files) {
+                tcMain.SelectedTab=tcMain.TabPages[i];
+                i++;
+                if (content.DirtyBit)
                 {
-                    case DialogResult.Yes:
+                    switch (this.showSaveQuestion(content.FileName))
+                    {
+                        case DialogResult.Yes:
 
-                        this.tsmiSave_Click(sender, e);                      
-                       
-                        break;
-                    case DialogResult.Cancel:
-                        e.Cancel=true;
-                        break;
+                            this.tsmiSave_Click(sender, e);
 
-                        
+                            break;
+                        case DialogResult.Cancel:
+                            e.Cancel = true;
+                            break;
+
+
+                    }
+
                 }
-
             }
+            
         }
-        private DialogResult showSaveQuestion()
+        private DialogResult showSaveQuestion(string fileName)
         {
             return MessageBox.Show(
                    "Do you want to save changes to the document "
-                   + content.FileName,
+                   + fileName,
                    "Do you want to save the document",
                    MessageBoxButtons.YesNoCancel,
                    MessageBoxIcon.Exclamation);
         }
+
+        private void tsbNew_Click(object sender, EventArgs e)
+        {
+            this.tsmiNew_Click(sender, e);
+        }
+
+        private void tsbOpen_Click(object sender, EventArgs e)
+        {
+            this.tsmiOpen_Click(sender, e);
+        }
+
+        private void tsbSave_Click(object sender, EventArgs e)
+        {
+            this.tsmiSave_Click(sender, e);
+        }
+
+        private void tcMain_selectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.tcMain.SelectedTab == tpPlus)
+            {
+                newTabPage();
+
+
+            }
+        }
+
+        private void newTabPage()
+        {
+            RichTextBox richTextBox = new RichTextBox();
+            TabPage tabPage = new TabPage("new File");
+
+            this.tcMain.TabPages.Insert(this.tcMain.TabPages.Count - 1, tabPage);
+            tabPage.Controls.Add(richTextBox);
+            richTextBox.Dock = DockStyle.Fill;
+            richTextBox.TextChanged += this.rtbTextChanged;
+            this.tcMain.SelectedTab = tabPage;
+
+            files.Add(new Model.Content());
+        }
+      
     }
 }
