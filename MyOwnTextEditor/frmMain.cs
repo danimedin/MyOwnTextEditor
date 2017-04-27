@@ -10,12 +10,12 @@ using System.Windows.Forms;
 
 namespace MyOwnTextEditor
 {
-    public partial class frmMain : Form
+    public partial class FrmMain : Form
     {
 
         private List<Model.Content> files;
        
-        public frmMain()
+        public FrmMain()
         {
             InitializeComponent();
             files = new List<Model.Content>();
@@ -147,7 +147,7 @@ namespace MyOwnTextEditor
 
         }
 
-        private void rtbTextChanged(object sender, EventArgs e)
+        public void rtbTextChanged(object sender, EventArgs e)
         {
             if  (! this.files[this.tcMain.SelectedIndex].DirtyBit )
             {
@@ -231,6 +231,14 @@ namespace MyOwnTextEditor
 
             files.Add(new Model.Content());
         }
-      
+
+        private void tsmiFind_Click(object sender, EventArgs e)
+        {
+            FrmSearch frmSearch = new FrmSearch();
+            frmSearch.Show();
+            frmSearch.Owner = this;
+            
+
+        }
     }
 }
