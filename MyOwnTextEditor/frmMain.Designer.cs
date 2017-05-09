@@ -62,12 +62,13 @@
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.tcMain = new System.Windows.Forms.TabControl();
             this.tp1 = new System.Windows.Forms.TabPage();
-            this.rtbContent = new System.Windows.Forms.RichTextBox();
             this.tpPlus = new System.Windows.Forms.TabPage();
+            this.tsmView = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmTabbed = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmWindow = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tcMain.SuspendLayout();
-            this.tp1.SuspendLayout();
             this.SuspendLayout();
             // 
             // msMain
@@ -76,6 +77,7 @@
             this.tsmiFile,
             this.editToolStripMenuItem,
             this.tsmiSeach,
+            this.tsmView,
             this.tsmiQuestion});
             this.msMain.Location = new System.Drawing.Point(0, 0);
             this.msMain.Name = "msMain";
@@ -235,7 +237,7 @@
             // tsmiAbout
             // 
             this.tsmiAbout.Name = "tsmiAbout";
-            this.tsmiAbout.Size = new System.Drawing.Size(107, 22);
+            this.tsmiAbout.Size = new System.Drawing.Size(152, 22);
             this.tsmiAbout.Text = "About";
             // 
             // toolStrip1
@@ -368,7 +370,6 @@
             // 
             // tp1
             // 
-            this.tp1.Controls.Add(this.rtbContent);
             this.tp1.Location = new System.Drawing.Point(4, 39);
             this.tp1.Name = "tp1";
             this.tp1.Padding = new System.Windows.Forms.Padding(3);
@@ -376,16 +377,6 @@
             this.tp1.TabIndex = 0;
             this.tp1.Text = "new file";
             this.tp1.UseVisualStyleBackColor = true;
-            // 
-            // rtbContent
-            // 
-            this.rtbContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rtbContent.Location = new System.Drawing.Point(3, 3);
-            this.rtbContent.Name = "rtbContent";
-            this.rtbContent.Size = new System.Drawing.Size(543, 338);
-            this.rtbContent.TabIndex = 0;
-            this.rtbContent.Text = "";
-            this.rtbContent.TextChanged += new System.EventHandler(this.rtbTextChanged);
             // 
             // tpPlus
             // 
@@ -397,7 +388,34 @@
             this.tpPlus.Text = "+";
             this.tpPlus.UseVisualStyleBackColor = true;
             // 
-            // frmMain
+            // tsmView
+            // 
+            this.tsmView.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmTabbed,
+            this.tsmWindow});
+            this.tsmView.Name = "tsmView";
+            this.tsmView.Size = new System.Drawing.Size(44, 20);
+            this.tsmView.Text = "View";
+            this.tsmView.Click += new System.EventHandler(this.vistaToolStripMenuItem_Click);
+            // 
+            // tsmTabbed
+            // 
+            this.tsmTabbed.Checked = true;
+            this.tsmTabbed.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.tsmTabbed.Enabled = false;
+            this.tsmTabbed.Name = "tsmTabbed";
+            this.tsmTabbed.Size = new System.Drawing.Size(152, 22);
+            this.tsmTabbed.Text = "Tabbed";
+            this.tsmTabbed.Click += new System.EventHandler(this.tsmTabbed_Click);
+            // 
+            // tsmWindow
+            // 
+            this.tsmWindow.Name = "tsmWindow";
+            this.tsmWindow.Size = new System.Drawing.Size(152, 22);
+            this.tsmWindow.Text = "Windows";
+            this.tsmWindow.Click += new System.EventHandler(this.tsmWindow_Click);
+            // 
+            // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -406,7 +424,7 @@
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.msMain);
             this.MainMenuStrip = this.msMain;
-            this.Name = "frmMain";
+            this.Name = "FrmMain";
             this.Text = "MyOwnTextEditor";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.myOwnForm_Closing);
             this.msMain.ResumeLayout(false);
@@ -414,7 +432,6 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.tcMain.ResumeLayout(false);
-            this.tp1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -456,7 +473,9 @@
         private System.Windows.Forms.TabControl tcMain;
         private System.Windows.Forms.TabPage tp1;
         private System.Windows.Forms.TabPage tpPlus;
-        private System.Windows.Forms.RichTextBox rtbContent;
+        private System.Windows.Forms.ToolStripMenuItem tsmView;
+        private System.Windows.Forms.ToolStripMenuItem tsmTabbed;
+        private System.Windows.Forms.ToolStripMenuItem tsmWindow;
     }
 }
 

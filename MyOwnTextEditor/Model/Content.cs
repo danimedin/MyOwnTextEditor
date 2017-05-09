@@ -10,11 +10,13 @@ namespace MyOwnTextEditor.Model
     {
         private string fileName;
         private bool dirtyBit;
+        private int fileId;
 
-        public Content()
+        public Content(int fileId)
         {
             this.FileName = String.Empty;
             this.DirtyBit = false;
+            this.FileId = fileId;
         }
         public string FileName
         {
@@ -27,6 +29,11 @@ namespace MyOwnTextEditor.Model
             get { return this.dirtyBit; }
             set { this.dirtyBit = value;  }
         }
+        public int FileId
+        {
+            get { return this.fileId; }
+            set { this.fileId = value; }
+        }
 
         public void onDirtyBit()
         {
@@ -36,6 +43,7 @@ namespace MyOwnTextEditor.Model
         {
             this.DirtyBit = false;
         }
+
 
     }
 }

@@ -12,14 +12,22 @@ namespace MyOwnTextEditor
 {
     public partial class FrmMain : Form
     {
-
+        private int fileCounter=0;
         private List<Model.Content> files;
        
         public FrmMain()
         {
             InitializeComponent();
             files = new List<Model.Content>();
-            files.Add(new Model.Content());
+            files.Add(new Model.Content(fileCounter));
+
+           CustomRichTextBox richTextBox = new CustomRichTextBox(fileCounter);
+           richTextBox.Dock = DockStyle.Fill;
+           tp1.Controls.Add(richTextBox);
+           richTextBox.TextChanged += this.rtbTextChanged;
+           this.tcMain.SelectedTab = tp1;
+            fileCounter++;
+
         }
 
         private void tsmiClose_Click(object sender, EventArgs e)
@@ -30,8 +38,8 @@ namespace MyOwnTextEditor
         private void tsmiNew_Click(object sender, EventArgs e)
         {
 
-            
-            this.tcMain_selectedIndexChanged(null, null);
+
+            this.newTabPage();
 
         }
         private void tsmiOpen_Click(object sender, EventArgs e)
@@ -54,7 +62,7 @@ namespace MyOwnTextEditor
                     {
                         try
                         {
-                            RichTextBox richTextBox = (RichTextBox)control;
+                            CustomRichTextBox richTextBox = (CustomRichTextBox)control;
                             richTextBox.Text = System.IO.File.ReadAllText(openFileDialog.FileName);
 
                             Model.Content content = files[this.tcMain.SelectedIndex];
@@ -91,7 +99,7 @@ namespace MyOwnTextEditor
                 {
                     try
                     {
-                        RichTextBox richTextBox = (RichTextBox)control;
+                        CustomRichTextBox richTextBox = (CustomRichTextBox)control;
                         System.IO.File.WriteAllText(this.files[this.tcMain.SelectedIndex].FileName, richTextBox.Text);
                         Model.Content content = files[this.tcMain.SelectedIndex];                        
                         content.offDirtyBit();
@@ -123,7 +131,7 @@ namespace MyOwnTextEditor
                     {
                         try
                         {
-                            RichTextBox richTextBox = (RichTextBox)control;
+                            CustomRichTextBox richTextBox = (CustomRichTextBox)control;
                             System.IO.File.WriteAllText(saveFileDialog.FileName, richTextBox.Text);
                             Model.Content content = files[this.tcMain.SelectedIndex];
                             content.FileName = saveFileDialog.FileName;
@@ -195,7 +203,7 @@ namespace MyOwnTextEditor
 
         private void tsbNew_Click(object sender, EventArgs e)
         {
-            this.tsmiNew_Click(sender, e);
+            newTabPage();
         }
 
         private void tsbOpen_Click(object sender, EventArgs e)
@@ -220,7 +228,7 @@ namespace MyOwnTextEditor
 
         private void newTabPage()
         {
-            RichTextBox richTextBox = new RichTextBox();
+            CustomRichTextBox richTextBox = new CustomRichTextBox(fileCounter);
             TabPage tabPage = new TabPage("new File");
 
             this.tcMain.TabPages.Insert(this.tcMain.TabPages.Count - 1, tabPage);
@@ -229,7 +237,8 @@ namespace MyOwnTextEditor
             richTextBox.TextChanged += this.rtbTextChanged;
             this.tcMain.SelectedTab = tabPage;
 
-            files.Add(new Model.Content());
+            files.Add(new Model.Content(fileCounter));
+            fileCounter++;
         }
 
         private void tsmiFind_Click(object sender, EventArgs e)
@@ -239,6 +248,80 @@ namespace MyOwnTextEditor
             frmSearch.Owner = this;
             
 
+        }
+
+        private void vistaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsmWindow_Click(object sender, EventArgs e)
+        {
+            this.tsmWindow.Enabled = false;
+            this.tsmWindow.Checked = true;
+            this.tsmTabbed.Enabled = true;
+            this.tsmTabbed.Checked = false;
+            this.IsMdiContainer = true;
+            foreach (TabPage tabPage in this.tcMain.TabPages) {
+                foreach (Control control in tabPage.Controls) {
+                    try {
+                        CustomRichTextBox richTextBox = (CustomRichTextBox)control;
+                        Form form = new Form();
+                        form.MdiParent = this;
+                        form.Controls.Add(richTextBox);
+                        form.Text = tabPage.Text;
+                        form.Show();
+                        
+                    } catch (InvalidCastException ex) { }
+
+
+                }
+            }
+            this.tcMain.Dispose();
+        }
+
+        private void tsmTabbed_Click(object sender, EventArgs e)
+        {
+            this.tsmWindow.Enabled = true;
+            this.tsmWindow.Checked = false;
+            this.tsmTabbed.Enabled = false;
+            this.tsmTabbed.Checked = true;
+            TabControl tabControl = new TabControl();
+            tabControl.Location = new Point(0, 51);
+            tabControl.Size = new Size (557, 387);
+            tabControl.ItemSize = new Size (68, 35);
+            tabControl.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
+            
+            this.Controls.Add(tabControl);
+            this.tcMain = tabControl;
+            
+            
+            foreach (Form form in this.MdiChildren)
+            {
+                foreach (Control control in form.Controls)
+                {
+                    try
+                    {
+                        CustomRichTextBox richTextBox = (CustomRichTextBox)control;
+
+                        TabPage tabPage = new TabPage();
+                        tabPage.Controls.Add(richTextBox);
+                        tabControl.TabPages.Add(tabPage);
+                        tabPage.Text = form.Text;
+
+                        
+
+                    }
+                    catch (InvalidCastException ex) { }
+
+
+                }
+                form.Dispose();
+            }
+            tpPlus = new TabPage();
+            tpPlus.Text = "+";
+            tabControl.TabPages.Add(tpPlus);
+            this.IsMdiContainer = false;
         }
     }
 }

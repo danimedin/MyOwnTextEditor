@@ -35,7 +35,7 @@ namespace MyOwnTextEditor
                     {
                         TabControl tabControl = (TabControl)control;
                         TabPage tabPage = tabControl.SelectedTab;
-                        RichTextBox richTextBox = (RichTextBox) tabPage.Controls[0];
+                        CustomRichTextBox richTextBox = (CustomRichTextBox) tabPage.Controls[0];
                         richTextBox.TextChanged  -= frmMain.rtbTextChanged;
                         string text = richTextBox.Text;
                         richTextBox.Clear();
