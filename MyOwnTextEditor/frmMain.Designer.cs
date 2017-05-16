@@ -46,6 +46,9 @@
             this.tsmiSeach = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiFind = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiReplace = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmView = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmTabbed = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmWindow = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiQuestion = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -63,9 +66,6 @@
             this.tcMain = new System.Windows.Forms.TabControl();
             this.tp1 = new System.Windows.Forms.TabPage();
             this.tpPlus = new System.Windows.Forms.TabPage();
-            this.tsmView = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmTabbed = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmWindow = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tcMain.SuspendLayout();
@@ -226,6 +226,33 @@
             this.tsmiReplace.Size = new System.Drawing.Size(158, 22);
             this.tsmiReplace.Text = "&Replace";
             // 
+            // tsmView
+            // 
+            this.tsmView.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmTabbed,
+            this.tsmWindow});
+            this.tsmView.Name = "tsmView";
+            this.tsmView.Size = new System.Drawing.Size(44, 20);
+            this.tsmView.Text = "View";
+            this.tsmView.Click += new System.EventHandler(this.vistaToolStripMenuItem_Click);
+            // 
+            // tsmTabbed
+            // 
+            this.tsmTabbed.Checked = true;
+            this.tsmTabbed.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.tsmTabbed.Enabled = false;
+            this.tsmTabbed.Name = "tsmTabbed";
+            this.tsmTabbed.Size = new System.Drawing.Size(152, 22);
+            this.tsmTabbed.Text = "Tabbed";
+            this.tsmTabbed.Click += new System.EventHandler(this.tsmTabbed_Click);
+            // 
+            // tsmWindow
+            // 
+            this.tsmWindow.Name = "tsmWindow";
+            this.tsmWindow.Size = new System.Drawing.Size(152, 22);
+            this.tsmWindow.Text = "Windows";
+            this.tsmWindow.Click += new System.EventHandler(this.tsmWindow_Click);
+            // 
             // tsmiQuestion
             // 
             this.tsmiQuestion.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -237,7 +264,7 @@
             // tsmiAbout
             // 
             this.tsmiAbout.Name = "tsmiAbout";
-            this.tsmiAbout.Size = new System.Drawing.Size(152, 22);
+            this.tsmiAbout.Size = new System.Drawing.Size(107, 22);
             this.tsmiAbout.Text = "About";
             // 
             // toolStrip1
@@ -386,34 +413,6 @@
             this.tpPlus.Size = new System.Drawing.Size(549, 344);
             this.tpPlus.TabIndex = 1;
             this.tpPlus.Text = "+";
-            this.tpPlus.UseVisualStyleBackColor = true;
-            // 
-            // tsmView
-            // 
-            this.tsmView.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmTabbed,
-            this.tsmWindow});
-            this.tsmView.Name = "tsmView";
-            this.tsmView.Size = new System.Drawing.Size(44, 20);
-            this.tsmView.Text = "View";
-            this.tsmView.Click += new System.EventHandler(this.vistaToolStripMenuItem_Click);
-            // 
-            // tsmTabbed
-            // 
-            this.tsmTabbed.Checked = true;
-            this.tsmTabbed.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.tsmTabbed.Enabled = false;
-            this.tsmTabbed.Name = "tsmTabbed";
-            this.tsmTabbed.Size = new System.Drawing.Size(152, 22);
-            this.tsmTabbed.Text = "Tabbed";
-            this.tsmTabbed.Click += new System.EventHandler(this.tsmTabbed_Click);
-            // 
-            // tsmWindow
-            // 
-            this.tsmWindow.Name = "tsmWindow";
-            this.tsmWindow.Size = new System.Drawing.Size(152, 22);
-            this.tsmWindow.Text = "Windows";
-            this.tsmWindow.Click += new System.EventHandler(this.tsmWindow_Click);
             // 
             // FrmMain
             // 
@@ -474,8 +473,8 @@
         private System.Windows.Forms.TabPage tp1;
         private System.Windows.Forms.TabPage tpPlus;
         private System.Windows.Forms.ToolStripMenuItem tsmView;
-        private System.Windows.Forms.ToolStripMenuItem tsmTabbed;
         private System.Windows.Forms.ToolStripMenuItem tsmWindow;
+        public System.Windows.Forms.ToolStripMenuItem tsmTabbed;
     }
 }
 

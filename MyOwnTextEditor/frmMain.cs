@@ -12,21 +12,23 @@ namespace MyOwnTextEditor
 {
     public partial class FrmMain : Form
     {
-        private int fileCounter=0;
-        private List<Model.Content> files;
+        
+        private List<CustomRichTextBox> customTextRichBoxes;
        
         public FrmMain()
         {
             InitializeComponent();
-            files = new List<Model.Content>();
-            files.Add(new Model.Content(fileCounter));
+            customTextRichBoxes = new List<CustomRichTextBox>();
+           
 
-           CustomRichTextBox richTextBox = new CustomRichTextBox(fileCounter);
+           CustomRichTextBox richTextBox = new CustomRichTextBox(new Model.Content());
            richTextBox.Dock = DockStyle.Fill;
+         
            tp1.Controls.Add(richTextBox);
            richTextBox.TextChanged += this.rtbTextChanged;
            this.tcMain.SelectedTab = tp1;
-            fileCounter++;
+            this.customTextRichBoxes.Add(richTextBox);
+            
 
         }
 
@@ -45,9 +47,15 @@ namespace MyOwnTextEditor
         private void tsmiOpen_Click(object sender, EventArgs e)
         {
 
-          
-            this.newTabPage();
-            this.open();
+            if (this.tsmTabbed.Checked)
+            {
+                this.newTabPage();
+                this.open();
+            }else
+            {
+                this.newChildForm();
+                this.open();
+            }
 
         }
         private void open()
@@ -57,15 +65,17 @@ namespace MyOwnTextEditor
             {
                 try
                 {
-                    TabPage selectedTab = this.tcMain.SelectedTab;
-                    foreach (Control control in selectedTab.Controls)
-                    {
+                    if (this.tsmTabbed.Checked) { 
+
+                        TabPage selectedTab = this.tcMain.SelectedTab;
+                        foreach (Control control in selectedTab.Controls)
+                        {
                         try
                         {
                             CustomRichTextBox richTextBox = (CustomRichTextBox)control;
                             richTextBox.Text = System.IO.File.ReadAllText(openFileDialog.FileName);
 
-                            Model.Content content = files[this.tcMain.SelectedIndex];
+                            Model.Content content = richTextBox.Content;
                             content.FileName = openFileDialog.FileName;
                             content.offDirtyBit();
                             
@@ -75,9 +85,25 @@ namespace MyOwnTextEditor
                         }
                         catch (InvalidCastException e) { }
 
+                        }
                     }
-                                           
-                    
+                    else
+                    {
+                        Form form = this.MdiChildren.Last();
+                        try
+                        {
+                            CustomRichTextBox richTextBox = (CustomRichTextBox) form.Controls[0];
+
+                            richTextBox.Text= System.IO.File.ReadAllText(openFileDialog.FileName);
+                            Model.Content content = richTextBox.Content;
+                            content.FileName = openFileDialog.FileName;
+                            content.offDirtyBit();
+                            form.Text = content.FileName;
+                        }
+                        catch (InvalidCastException ex) { } 
+                    }
+
+
                 }
                 catch (Exception exception)
                 {
@@ -88,56 +114,25 @@ namespace MyOwnTextEditor
         }
         private void tsmiSave_Click(object sender, EventArgs e)
         {
-            if (files[tcMain.SelectedIndex].FileName == String.Empty)
+            if (this.tsmTabbed.Checked)
             {
-                this.tsmiSaveAs_Click(sender, e);
-            }
-            else
-            {
-                TabPage selectedTab = this.tcMain.SelectedTab;
-                foreach (Control control in selectedTab.Controls)
+                if (customTextRichBoxes[tcMain.SelectedIndex].Content.FileName == String.Empty)
                 {
-                    try
-                    {
-                        CustomRichTextBox richTextBox = (CustomRichTextBox)control;
-                        System.IO.File.WriteAllText(this.files[this.tcMain.SelectedIndex].FileName, richTextBox.Text);
-                        Model.Content content = files[this.tcMain.SelectedIndex];                        
-                        content.offDirtyBit();
-                        selectedTab.Text = content.FileName;
-
-                        
-
-                    }
-                    catch (InvalidCastException ex) { }
-
+                    this.tsmiSaveAs_Click(sender, e);
                 }
-                
-                
-
-            }
-
-
-        }
-
-        private void tsmiSaveAs_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
+                else
                 {
+
                     TabPage selectedTab = this.tcMain.SelectedTab;
                     foreach (Control control in selectedTab.Controls)
                     {
                         try
                         {
                             CustomRichTextBox richTextBox = (CustomRichTextBox)control;
-                            System.IO.File.WriteAllText(saveFileDialog.FileName, richTextBox.Text);
-                            Model.Content content = files[this.tcMain.SelectedIndex];
-                            content.FileName = saveFileDialog.FileName;
+                            System.IO.File.WriteAllText(this.customTextRichBoxes[this.tcMain.SelectedIndex].Content.FileName, richTextBox.Text);
+                            Model.Content content = this.customTextRichBoxes[this.tcMain.SelectedIndex].Content;
                             content.offDirtyBit();
-                            this.Text = "MyOwnTextEditor - " + content.FileName;
-                            this.tcMain.SelectedTab.Text = content.FileName;
+                            selectedTab.Text = content.FileName;
 
 
 
@@ -145,11 +140,93 @@ namespace MyOwnTextEditor
                         catch (InvalidCastException ex) { }
 
                     }
-                   
+
+
+
                 }
-                catch (Exception exception)
+            }
+            else {
+                try
                 {
-                    MessageBox.Show("There was an error writing the file");
+                    Form form = this.ActiveMdiChild;
+                
+             
+                    CustomRichTextBox richTextBox = (CustomRichTextBox)form.Controls[0];
+                    if (richTextBox.Content.FileName == String.Empty)
+                    {
+                        this.tsmiSaveAs_Click(sender, e);
+                    }else { 
+                    System.IO.File.WriteAllText(richTextBox.Content.FileName, richTextBox.Text);
+                    Model.Content content = richTextBox.Content;
+                    content.offDirtyBit();
+                    form.Text = content.FileName;
+                    }
+                }
+                catch (NullReferenceException ex)
+                {
+
+                }
+                
+            }
+
+
+        }
+
+        private void tsmiSaveAs_Click(object sender, EventArgs e)
+        {
+            if (this.tsmTabbed.Checked)
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        TabPage selectedTab = this.tcMain.SelectedTab;
+                        foreach (Control control in selectedTab.Controls)
+                        {
+                            try
+                            {
+                                CustomRichTextBox richTextBox = (CustomRichTextBox)control;
+                                System.IO.File.WriteAllText(saveFileDialog.FileName, richTextBox.Text);
+                                Model.Content content = richTextBox.Content;
+                                content.FileName = saveFileDialog.FileName;
+                                content.offDirtyBit();
+                                this.Text = "MyOwnTextEditor - " + content.FileName;
+                                this.tcMain.SelectedTab.Text = content.FileName;
+
+
+
+                            }
+                            catch (InvalidCastException ex) { }
+
+                        }
+
+                    }
+                    catch (Exception exception)
+                    {
+                        MessageBox.Show("There was an error writing the file");
+                    }
+                }
+            }
+            else
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try {
+                        Form form = this.ActiveMdiChild;
+                        CustomRichTextBox richTextBox = (CustomRichTextBox)form.Controls[0];
+                        System.IO.File.WriteAllText(saveFileDialog.FileName, richTextBox.Text);
+                        Model.Content content = richTextBox.Content;
+                        content.FileName = saveFileDialog.FileName;
+                        content.offDirtyBit();
+                        this.Text = "MyOwnTextEditor - " + content.FileName;
+                        form.Text = content.FileName;
+                    }
+                    catch(NullReferenceException ex){
+
+                    }
+
                 }
             }
 
@@ -157,36 +234,81 @@ namespace MyOwnTextEditor
 
         public void rtbTextChanged(object sender, EventArgs e)
         {
-            if  (! this.files[this.tcMain.SelectedIndex].DirtyBit )
+            if (this.tsmTabbed.Checked)
             {
-                this.files[this.tcMain.SelectedIndex].onDirtyBit();
-                this.tcMain.SelectedTab.Text = this.tcMain.SelectedTab.Text + '*';
+                if (!this.customTextRichBoxes[this.tcMain.SelectedIndex].Content.DirtyBit)
+                {
+                    this.customTextRichBoxes[this.tcMain.SelectedIndex].Content.onDirtyBit();
+                    this.tcMain.SelectedTab.Text = this.tcMain.SelectedTab.Text + '*';
+                }
             }
-            
+            else
+            {
+                CustomRichTextBox richTextBox = (CustomRichTextBox)sender;
+                if (!richTextBox.Content.DirtyBit)
+                {
+                    richTextBox.Content.onDirtyBit();
+                    richTextBox.Parent.Text = richTextBox.Parent.Text + '*';
+                }
+            }
+                
         }
 
         private void myOwnForm_Closing(object sender, FormClosingEventArgs e)
         {
             int i = 0;
-            foreach (Model.Content content in this.files) {
-                tcMain.SelectedTab=tcMain.TabPages[i];
-                i++;
-                if (content.DirtyBit)
+            if (this.tsmTabbed.Checked) { 
+                foreach (CustomRichTextBox richTextBox in this.customTextRichBoxes)
                 {
-                    switch (this.showSaveQuestion(content.FileName))
+                    Model.Content content = richTextBox.Content;
+                    tcMain.SelectedTab = tcMain.TabPages[i];
+                    i++;
+                    if (content.DirtyBit)
                     {
-                        case DialogResult.Yes:
+                        switch (this.showSaveQuestion(content.FileName))
+                        {
+                            case DialogResult.Yes:
 
-                            this.tsmiSave_Click(sender, e);
+                                this.tsmiSave_Click(sender, e);
 
-                            break;
-                        case DialogResult.Cancel:
-                            e.Cancel = true;
-                            break;
+                                break;
+                            case DialogResult.Cancel:
+                                e.Cancel = true;
+                                break;
 
+
+                        }
 
                     }
+                }
+            }
+            else
+            {
+                foreach (CustomRichTextBox richTextBox in this.customTextRichBoxes)
+                {
+                    Model.Content content = richTextBox.Content;
+                    this.MdiChildren[i].Focus();
 
+                   
+                    
+                    i++;
+                    if (content.DirtyBit)
+                    {
+                        switch (this.showSaveQuestion(content.FileName))
+                        {
+                            case DialogResult.Yes:
+
+                                this.tsmiSave_Click(sender, e);
+
+                                break;
+                            case DialogResult.Cancel:
+                                e.Cancel = true;
+                                break;
+
+
+                        }
+
+                    }
                 }
             }
             
@@ -228,7 +350,7 @@ namespace MyOwnTextEditor
 
         private void newTabPage()
         {
-            CustomRichTextBox richTextBox = new CustomRichTextBox(fileCounter);
+            CustomRichTextBox richTextBox = new CustomRichTextBox(new Model.Content());
             TabPage tabPage = new TabPage("new File");
 
             this.tcMain.TabPages.Insert(this.tcMain.TabPages.Count - 1, tabPage);
@@ -237,8 +359,20 @@ namespace MyOwnTextEditor
             richTextBox.TextChanged += this.rtbTextChanged;
             this.tcMain.SelectedTab = tabPage;
 
-            files.Add(new Model.Content(fileCounter));
-            fileCounter++;
+            this.customTextRichBoxes.Add(richTextBox);
+        }
+        private void newChildForm()
+        {
+            CustomRichTextBox richTextBox = new CustomRichTextBox(new Model.Content());
+            richTextBox.Dock = DockStyle.Fill;
+            richTextBox.TextChanged += this.rtbTextChanged;
+            Form form = new Form();
+            form.MdiParent = this;
+            form.Controls.Add(richTextBox);
+            form.Show();
+
+            this.customTextRichBoxes.Add(richTextBox);
+
         }
 
         private void tsmiFind_Click(object sender, EventArgs e)
@@ -262,22 +396,49 @@ namespace MyOwnTextEditor
             this.tsmTabbed.Enabled = true;
             this.tsmTabbed.Checked = false;
             this.IsMdiContainer = true;
+
+            createSelectedTabForm();
+
             foreach (TabPage tabPage in this.tcMain.TabPages) {
+                if (tabPage.GetHashCode() != tcMain.SelectedTab.GetHashCode())
+                {
+
+                
                 foreach (Control control in tabPage.Controls) {
                     try {
                         CustomRichTextBox richTextBox = (CustomRichTextBox)control;
                         Form form = new Form();
                         form.MdiParent = this;
                         form.Controls.Add(richTextBox);
+                        
                         form.Text = tabPage.Text;
                         form.Show();
+                        form.BringToFront();
+                       
+
                         
                     } catch (InvalidCastException ex) { }
 
-
+                    }
                 }
             }
+            
+
+
+            this.tcMain.Controls.Clear();
             this.tcMain.Dispose();
+        }
+
+        private void createSelectedTabForm()
+        {
+
+            CustomRichTextBox richTextBox = (CustomRichTextBox)tcMain.SelectedTab.Controls[0];
+            Form form = new Form();
+            form.MdiParent = this;
+            form.Controls.Add(richTextBox);
+
+            form.Text = tcMain.SelectedTab.Text;
+            form.Show();
         }
 
         private void tsmTabbed_Click(object sender, EventArgs e)
@@ -287,15 +448,17 @@ namespace MyOwnTextEditor
             this.tsmTabbed.Enabled = false;
             this.tsmTabbed.Checked = true;
             TabControl tabControl = new TabControl();
-            tabControl.Location = new Point(0, 51);
-            tabControl.Size = new Size (557, 387);
-            tabControl.ItemSize = new Size (68, 35);
-            tabControl.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
-            
+               tabControl.Location = new Point(0, 51);
+               tabControl.Size = new Size(557, 387);
+               tabControl.ItemSize = new Size(68, 35);
+               tabControl.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
+         
+         
             this.Controls.Add(tabControl);
-            this.tcMain = tabControl;
-            
-            
+            tabControl.SelectedIndexChanged += this.tcMain_selectedIndexChanged;
+         this.tcMain = tabControl;
+
+
             foreach (Form form in this.MdiChildren)
             {
                 foreach (Control control in form.Controls)
@@ -306,10 +469,10 @@ namespace MyOwnTextEditor
 
                         TabPage tabPage = new TabPage();
                         tabPage.Controls.Add(richTextBox);
-                        tabControl.TabPages.Add(tabPage);
+                        tcMain.TabPages.Add(tabPage);
                         tabPage.Text = form.Text;
 
-                        
+
 
                     }
                     catch (InvalidCastException ex) { }
@@ -320,7 +483,7 @@ namespace MyOwnTextEditor
             }
             tpPlus = new TabPage();
             tpPlus.Text = "+";
-            tabControl.TabPages.Add(tpPlus);
+            tcMain.TabPages.Add(tpPlus);
             this.IsMdiContainer = false;
         }
     }

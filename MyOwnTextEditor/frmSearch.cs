@@ -29,28 +29,51 @@ namespace MyOwnTextEditor
 
             if (!(this.cmbFind.Text == string.Empty)) {
                 FrmMain frmMain = (FrmMain) this.Owner;
-                foreach (Control control in frmMain.Controls)
+                if (frmMain.tsmTabbed.Checked)
                 {
-                    try
+
+                    foreach (Control control in frmMain.Controls)
                     {
-                        TabControl tabControl = (TabControl)control;
-                        TabPage tabPage = tabControl.SelectedTab;
-                        CustomRichTextBox richTextBox = (CustomRichTextBox) tabPage.Controls[0];
-                        richTextBox.TextChanged  -= frmMain.rtbTextChanged;
-                        string text = richTextBox.Text;
-                        richTextBox.Clear();
-                        richTextBox.Text = text;
-                        startIndex = richTextBox.Text.IndexOf(cmbFind.Text,startIndex+1);
-                        if (startIndex != -1) { 
-                        richTextBox.Select(startIndex, cmbFind.Text.Length);
-                        richTextBox.SelectionColor = System.Drawing.Color.White;
-                        richTextBox.SelectionBackColor = System.Drawing.Color.Blue;
-                        richTextBox.TextChanged += frmMain.rtbTextChanged;
+                        try
+                        {
+                            TabControl tabControl = (TabControl)control;
+                            TabPage tabPage = tabControl.SelectedTab;
+                            CustomRichTextBox richTextBox = (CustomRichTextBox)tabPage.Controls[0];
+                            this.searchInRichTextBox(richTextBox);
                         }
+                        catch (InvalidCastException ex) { }
                     }
-                    catch (InvalidCastException ex) { }
                 }
+                else {
+                    Form activeForm = frmMain.ActiveMdiChild;
+                        
+                        
+                            CustomRichTextBox richTextBox = (CustomRichTextBox)activeForm.Controls[0];
+                            this.searchInRichTextBox(richTextBox);
+                        
+                    
+                }
+
             }
         }
+
+        private void searchInRichTextBox(CustomRichTextBox richTextBox)
+        {
+
+            richTextBox.TextChanged -=((FrmMain) this.Owner).rtbTextChanged;
+            string text = richTextBox.Text;
+            richTextBox.Clear();
+
+            richTextBox.Text = text;
+            startIndex = richTextBox.Text.IndexOf(cmbFind.Text, startIndex + 1);
+            if (startIndex != -1)
+            {
+                richTextBox.Select(startIndex, cmbFind.Text.Length);
+                richTextBox.SelectionColor = System.Drawing.Color.White;
+                richTextBox.SelectionBackColor = System.Drawing.Color.Blue;
+                richTextBox.TextChanged += ((FrmMain)this.Owner).rtbTextChanged;
+            }
+        }
+        
     }
 }

@@ -9,8 +9,8 @@ namespace MyOwnTextEditor
     class CustomRichTextBox : System.Windows.Forms.RichTextBox
 
     {
-        public CustomRichTextBox (int fileId) { this.FileId = fileId; }
-        public int FileId { get; set; }
+        public CustomRichTextBox (Model.Content content) { this.Content = content; }
+        public Model.Content Content { get; set; }
 
     }
 }
