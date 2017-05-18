@@ -74,6 +74,12 @@ namespace MyOwnTextEditor
                 richTextBox.TextChanged += ((FrmMain)this.Owner).rtbTextChanged;
             }
         }
-        
+
+        private void cmbFind_KeyPreseed(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (Char)Keys.Enter)
+                btbFind_Click(null, null);
+
+        }
     }
 }

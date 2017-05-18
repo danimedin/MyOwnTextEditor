@@ -23,12 +23,12 @@ namespace MyOwnTextEditor
 
            CustomRichTextBox richTextBox = new CustomRichTextBox(new Model.Content());
            richTextBox.Dock = DockStyle.Fill;
-         
+                    
            tp1.Controls.Add(richTextBox);
            richTextBox.TextChanged += this.rtbTextChanged;
            this.tcMain.SelectedTab = tp1;
             this.customTextRichBoxes.Add(richTextBox);
-            
+            richTextBox.Select();
 
         }
 
@@ -81,7 +81,9 @@ namespace MyOwnTextEditor
                             
                             this.Text = "MyOwnTextEditor - " + content.FileName;
                             selectedTab.Text = content.FileName;
-                            
+                                richTextBox.Select();
+
+
                         }
                         catch (InvalidCastException e) { }
 
@@ -99,6 +101,7 @@ namespace MyOwnTextEditor
                             content.FileName = openFileDialog.FileName;
                             content.offDirtyBit();
                             form.Text = content.FileName;
+                            richTextBox.Select();
                         }
                         catch (InvalidCastException ex) { } 
                     }
@@ -133,6 +136,7 @@ namespace MyOwnTextEditor
                             Model.Content content = this.customTextRichBoxes[this.tcMain.SelectedIndex].Content;
                             content.offDirtyBit();
                             selectedTab.Text = content.FileName;
+                            richTextBox.Select();
 
 
 
@@ -160,6 +164,7 @@ namespace MyOwnTextEditor
                     Model.Content content = richTextBox.Content;
                     content.offDirtyBit();
                     form.Text = content.FileName;
+                        richTextBox.Select();
                     }
                 }
                 catch (NullReferenceException ex)
@@ -193,6 +198,7 @@ namespace MyOwnTextEditor
                                 content.offDirtyBit();
                                 this.Text = "MyOwnTextEditor - " + content.FileName;
                                 this.tcMain.SelectedTab.Text = content.FileName;
+                                richTextBox.Select();
 
 
 
@@ -222,6 +228,7 @@ namespace MyOwnTextEditor
                         content.offDirtyBit();
                         this.Text = "MyOwnTextEditor - " + content.FileName;
                         form.Text = content.FileName;
+                        richTextBox.Select();
                     }
                     catch(NullReferenceException ex){
 
@@ -360,6 +367,7 @@ namespace MyOwnTextEditor
             this.tcMain.SelectedTab = tabPage;
 
             this.customTextRichBoxes.Add(richTextBox);
+            richTextBox.Select();
         }
         private void newChildForm()
         {
@@ -372,6 +380,7 @@ namespace MyOwnTextEditor
             form.Show();
 
             this.customTextRichBoxes.Add(richTextBox);
+            richTextBox.Select();
 
         }
 
@@ -426,7 +435,7 @@ namespace MyOwnTextEditor
 
 
             this.tcMain.Controls.Clear();
-            this.tcMain.Dispose();
+            this.tcMain.Visible=false;
         }
 
         private void createSelectedTabForm()
@@ -447,17 +456,19 @@ namespace MyOwnTextEditor
             this.tsmWindow.Checked = false;
             this.tsmTabbed.Enabled = false;
             this.tsmTabbed.Checked = true;
-            TabControl tabControl = new TabControl();
-               tabControl.Location = new Point(0, 51);
-               tabControl.Size = new Size(557, 387);
-               tabControl.ItemSize = new Size(68, 35);
-               tabControl.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
-         
-         
-            this.Controls.Add(tabControl);
-            tabControl.SelectedIndexChanged += this.tcMain_selectedIndexChanged;
-         this.tcMain = tabControl;
+            //// TabControl tabControl = new TabControl();
 
+            //    tabControl.Location = new Point(0, 51);
+            //    tabControl.Size = new Size(557, 387);
+            //    tabControl.ItemSize = new Size(68, 35);
+            //    tabControl.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
+
+
+            // this.Controls.Add(tabControl);
+            //tabControl.SelectedIndexChanged += this.tcMain_selectedIndexChanged;
+            TabControl tabControl = this.tcMain;
+            //this.tcMain = tabControl;
+            tabControl.Visible = true;
 
             foreach (Form form in this.MdiChildren)
             {

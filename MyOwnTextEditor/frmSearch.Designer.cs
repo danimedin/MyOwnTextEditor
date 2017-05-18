@@ -50,6 +50,7 @@
             this.cmbFind.Name = "cmbFind";
             this.cmbFind.Size = new System.Drawing.Size(345, 21);
             this.cmbFind.TabIndex = 1;
+            this.cmbFind.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbFind_KeyPreseed);
             // 
             // btbFind
             // 
