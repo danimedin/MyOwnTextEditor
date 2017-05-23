@@ -62,10 +62,10 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbUndo = new System.Windows.Forms.ToolStripButton();
             this.tsbRedo = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.tcMain = new System.Windows.Forms.TabControl();
             this.tp1 = new System.Windows.Forms.TabPage();
             this.tpPlus = new System.Windows.Forms.TabPage();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.msMain.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tcMain.SuspendLayout();
@@ -73,20 +73,18 @@
             // 
             // msMain
             // 
+            resources.ApplyResources(this.msMain, "msMain");
             this.msMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiFile,
             this.editToolStripMenuItem,
             this.tsmiSeach,
             this.tsmView,
             this.tsmiQuestion});
-            this.msMain.Location = new System.Drawing.Point(0, 0);
             this.msMain.Name = "msMain";
-            this.msMain.Size = new System.Drawing.Size(557, 24);
-            this.msMain.TabIndex = 0;
-            this.msMain.Text = "menuStrip1";
             // 
             // tsmiFile
             // 
+            resources.ApplyResources(this.tsmiFile, "tsmiFile");
             this.tsmiFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiNew,
             this.tsmiOpen,
@@ -94,56 +92,41 @@
             this.tsmiSaveAs,
             this.tsmiExit});
             this.tsmiFile.Name = "tsmiFile";
-            this.tsmiFile.Size = new System.Drawing.Size(37, 20);
-            this.tsmiFile.Text = "&File";
             // 
             // tsmiNew
             // 
+            resources.ApplyResources(this.tsmiNew, "tsmiNew");
             this.tsmiNew.Image = global::MyOwnTextEditor.icons._new;
             this.tsmiNew.Name = "tsmiNew";
-            this.tsmiNew.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.tsmiNew.Size = new System.Drawing.Size(186, 22);
-            this.tsmiNew.Text = "&New";
             this.tsmiNew.Click += new System.EventHandler(this.tsmiNew_Click);
             // 
             // tsmiOpen
             // 
-            this.tsmiOpen.Image = ((System.Drawing.Image)(resources.GetObject("tsmiOpen.Image")));
+            resources.ApplyResources(this.tsmiOpen, "tsmiOpen");
             this.tsmiOpen.Name = "tsmiOpen";
-            this.tsmiOpen.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.tsmiOpen.Size = new System.Drawing.Size(186, 22);
-            this.tsmiOpen.Text = "&Open";
             this.tsmiOpen.Click += new System.EventHandler(this.tsmiOpen_Click);
             // 
             // tsmiSave
             // 
-            this.tsmiSave.Image = ((System.Drawing.Image)(resources.GetObject("tsmiSave.Image")));
+            resources.ApplyResources(this.tsmiSave, "tsmiSave");
             this.tsmiSave.Name = "tsmiSave";
-            this.tsmiSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.tsmiSave.Size = new System.Drawing.Size(186, 22);
-            this.tsmiSave.Text = "&Save";
             this.tsmiSave.Click += new System.EventHandler(this.tsmiSave_Click);
             // 
             // tsmiSaveAs
             // 
+            resources.ApplyResources(this.tsmiSaveAs, "tsmiSaveAs");
             this.tsmiSaveAs.Name = "tsmiSaveAs";
-            this.tsmiSaveAs.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.S)));
-            this.tsmiSaveAs.Size = new System.Drawing.Size(186, 22);
-            this.tsmiSaveAs.Text = "Save As";
             this.tsmiSaveAs.Click += new System.EventHandler(this.tsmiSaveAs_Click);
             // 
             // tsmiExit
             // 
-            this.tsmiExit.Image = ((System.Drawing.Image)(resources.GetObject("tsmiExit.Image")));
+            resources.ApplyResources(this.tsmiExit, "tsmiExit");
             this.tsmiExit.Name = "tsmiExit";
-            this.tsmiExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.tsmiExit.Size = new System.Drawing.Size(186, 22);
-            this.tsmiExit.Text = "&Exit";
             this.tsmiExit.Click += new System.EventHandler(this.tsmiClose_Click);
             // 
             // editToolStripMenuItem
             // 
+            resources.ApplyResources(this.editToolStripMenuItem, "editToolStripMenuItem");
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiUndo,
             this.tsmiDo,
@@ -152,123 +135,99 @@
             this.tsmiCopy,
             this.tsmiPaste});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
-            this.editToolStripMenuItem.Text = "&Edit";
             // 
             // tsmiUndo
             // 
+            resources.ApplyResources(this.tsmiUndo, "tsmiUndo");
             this.tsmiUndo.Image = global::MyOwnTextEditor.icons.undo;
             this.tsmiUndo.Name = "tsmiUndo";
-            this.tsmiUndo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.tsmiUndo.Size = new System.Drawing.Size(162, 22);
-            this.tsmiUndo.Text = "Undo";
             // 
             // tsmiDo
             // 
+            resources.ApplyResources(this.tsmiDo, "tsmiDo");
             this.tsmiDo.Image = global::MyOwnTextEditor.icons.redo;
             this.tsmiDo.Name = "tsmiDo";
-            this.tsmiDo.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.Y)));
-            this.tsmiDo.Size = new System.Drawing.Size(162, 22);
-            this.tsmiDo.Text = "Do";
             // 
             // toolStripSeparator1
             // 
+            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(159, 6);
             // 
             // tsmiCut
             // 
+            resources.ApplyResources(this.tsmiCut, "tsmiCut");
             this.tsmiCut.Image = global::MyOwnTextEditor.icons.Cut;
             this.tsmiCut.Name = "tsmiCut";
-            this.tsmiCut.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.tsmiCut.Size = new System.Drawing.Size(162, 22);
-            this.tsmiCut.Text = "Cu&t";
             // 
             // tsmiCopy
             // 
+            resources.ApplyResources(this.tsmiCopy, "tsmiCopy");
             this.tsmiCopy.Image = global::MyOwnTextEditor.icons.copy;
             this.tsmiCopy.Name = "tsmiCopy";
-            this.tsmiCopy.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.tsmiCopy.Size = new System.Drawing.Size(162, 22);
-            this.tsmiCopy.Text = "&Copy";
             // 
             // tsmiPaste
             // 
+            resources.ApplyResources(this.tsmiPaste, "tsmiPaste");
             this.tsmiPaste.Image = global::MyOwnTextEditor.icons.paste;
             this.tsmiPaste.Name = "tsmiPaste";
-            this.tsmiPaste.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.tsmiPaste.Size = new System.Drawing.Size(162, 22);
-            this.tsmiPaste.Text = "&Paste";
             // 
             // tsmiSeach
             // 
+            resources.ApplyResources(this.tsmiSeach, "tsmiSeach");
             this.tsmiSeach.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiFind,
             this.tsmiReplace});
             this.tsmiSeach.Name = "tsmiSeach";
-            this.tsmiSeach.Size = new System.Drawing.Size(54, 20);
-            this.tsmiSeach.Text = "&Search";
             // 
             // tsmiFind
             // 
+            resources.ApplyResources(this.tsmiFind, "tsmiFind");
             this.tsmiFind.Image = global::MyOwnTextEditor.icons.find;
             this.tsmiFind.Name = "tsmiFind";
-            this.tsmiFind.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
-            this.tsmiFind.Size = new System.Drawing.Size(158, 22);
-            this.tsmiFind.Text = "Find";
             this.tsmiFind.Click += new System.EventHandler(this.tsmiFind_Click);
             // 
             // tsmiReplace
             // 
+            resources.ApplyResources(this.tsmiReplace, "tsmiReplace");
             this.tsmiReplace.Name = "tsmiReplace";
-            this.tsmiReplace.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.H)));
-            this.tsmiReplace.Size = new System.Drawing.Size(158, 22);
-            this.tsmiReplace.Text = "&Replace";
             // 
             // tsmView
             // 
+            resources.ApplyResources(this.tsmView, "tsmView");
             this.tsmView.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmTabbed,
             this.tsmWindow});
             this.tsmView.Name = "tsmView";
-            this.tsmView.Size = new System.Drawing.Size(44, 20);
-            this.tsmView.Text = "View";
-            this.tsmView.Click += new System.EventHandler(this.vistaToolStripMenuItem_Click);
             // 
             // tsmTabbed
             // 
+            resources.ApplyResources(this.tsmTabbed, "tsmTabbed");
             this.tsmTabbed.Checked = true;
             this.tsmTabbed.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.tsmTabbed.Enabled = false;
             this.tsmTabbed.Name = "tsmTabbed";
-            this.tsmTabbed.Size = new System.Drawing.Size(152, 22);
-            this.tsmTabbed.Text = "Tabbed";
             this.tsmTabbed.Click += new System.EventHandler(this.tsmTabbed_Click);
             // 
             // tsmWindow
             // 
+            resources.ApplyResources(this.tsmWindow, "tsmWindow");
             this.tsmWindow.Name = "tsmWindow";
-            this.tsmWindow.Size = new System.Drawing.Size(152, 22);
-            this.tsmWindow.Text = "Windows";
             this.tsmWindow.Click += new System.EventHandler(this.tsmWindow_Click);
             // 
             // tsmiQuestion
             // 
+            resources.ApplyResources(this.tsmiQuestion, "tsmiQuestion");
             this.tsmiQuestion.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiAbout});
             this.tsmiQuestion.Name = "tsmiQuestion";
-            this.tsmiQuestion.Size = new System.Drawing.Size(24, 20);
-            this.tsmiQuestion.Text = "?";
             // 
             // tsmiAbout
             // 
+            resources.ApplyResources(this.tsmiAbout, "tsmiAbout");
             this.tsmiAbout.Name = "tsmiAbout";
-            this.tsmiAbout.Size = new System.Drawing.Size(107, 22);
-            this.tsmiAbout.Text = "About";
             // 
             // toolStrip1
             // 
+            resources.ApplyResources(this.toolStrip1, "toolStrip1");
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbNew,
             this.tsbOpen,
@@ -280,151 +239,112 @@
             this.toolStripSeparator3,
             this.tsbUndo,
             this.tsbRedo});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(557, 25);
-            this.toolStrip1.TabIndex = 2;
-            this.toolStrip1.Text = "toolStrip1";
             // 
             // tsbNew
             // 
+            resources.ApplyResources(this.tsbNew, "tsbNew");
             this.tsbNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsbNew.Image = global::MyOwnTextEditor.icons._new;
-            this.tsbNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbNew.Name = "tsbNew";
-            this.tsbNew.Size = new System.Drawing.Size(23, 22);
-            this.tsbNew.Text = "toolStripButton2";
             this.tsbNew.Click += new System.EventHandler(this.tsbNew_Click);
             // 
             // tsbOpen
             // 
+            resources.ApplyResources(this.tsbOpen, "tsbOpen");
             this.tsbOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsbOpen.Image = global::MyOwnTextEditor.icons.open;
-            this.tsbOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbOpen.Name = "tsbOpen";
-            this.tsbOpen.Size = new System.Drawing.Size(23, 22);
-            this.tsbOpen.Text = "toolStripButton2";
             this.tsbOpen.Click += new System.EventHandler(this.tsbOpen_Click);
             // 
             // tsbSave
             // 
+            resources.ApplyResources(this.tsbSave, "tsbSave");
             this.tsbSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsbSave.Image = global::MyOwnTextEditor.icons.save;
-            this.tsbSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbSave.Name = "tsbSave";
-            this.tsbSave.Size = new System.Drawing.Size(23, 22);
-            this.tsbSave.Text = "toolStripButton3";
             this.tsbSave.Click += new System.EventHandler(this.tsbSave_Click);
             // 
             // toolStripSeparator2
             // 
+            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // tsbCut
             // 
+            resources.ApplyResources(this.tsbCut, "tsbCut");
             this.tsbCut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsbCut.Image = global::MyOwnTextEditor.icons.Cut;
-            this.tsbCut.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbCut.Name = "tsbCut";
-            this.tsbCut.Size = new System.Drawing.Size(23, 22);
-            this.tsbCut.Text = "toolStripButton4";
             // 
             // tsbCopy
             // 
+            resources.ApplyResources(this.tsbCopy, "tsbCopy");
             this.tsbCopy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsbCopy.Image = global::MyOwnTextEditor.icons.copy;
-            this.tsbCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbCopy.Name = "tsbCopy";
-            this.tsbCopy.Size = new System.Drawing.Size(23, 22);
-            this.tsbCopy.Text = "toolStripButton5";
             // 
             // tsbPaste
             // 
+            resources.ApplyResources(this.tsbPaste, "tsbPaste");
             this.tsbPaste.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsbPaste.Image = global::MyOwnTextEditor.icons.paste;
-            this.tsbPaste.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbPaste.Name = "tsbPaste";
-            this.tsbPaste.Size = new System.Drawing.Size(23, 22);
-            this.tsbPaste.Text = "toolStripButton6";
             // 
             // toolStripSeparator3
             // 
+            resources.ApplyResources(this.toolStripSeparator3, "toolStripSeparator3");
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
             // tsbUndo
             // 
+            resources.ApplyResources(this.tsbUndo, "tsbUndo");
             this.tsbUndo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsbUndo.Image = global::MyOwnTextEditor.icons.undo;
-            this.tsbUndo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbUndo.Name = "tsbUndo";
-            this.tsbUndo.Size = new System.Drawing.Size(23, 22);
-            this.tsbUndo.Text = "toolStripButton7";
             // 
             // tsbRedo
             // 
+            resources.ApplyResources(this.tsbRedo, "tsbRedo");
             this.tsbRedo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsbRedo.Image = global::MyOwnTextEditor.icons.redo;
-            this.tsbRedo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbRedo.Name = "tsbRedo";
-            this.tsbRedo.Size = new System.Drawing.Size(23, 22);
-            this.tsbRedo.Text = "toolStripButton8";
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "toolStripButton1";
             // 
             // tcMain
             // 
-            this.tcMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.tcMain, "tcMain");
             this.tcMain.Controls.Add(this.tp1);
             this.tcMain.Controls.Add(this.tpPlus);
-            this.tcMain.ItemSize = new System.Drawing.Size(68, 35);
-            this.tcMain.Location = new System.Drawing.Point(0, 52);
             this.tcMain.Name = "tcMain";
             this.tcMain.SelectedIndex = 0;
-            this.tcMain.Size = new System.Drawing.Size(557, 387);
-            this.tcMain.TabIndex = 3;
             this.tcMain.SelectedIndexChanged += new System.EventHandler(this.tcMain_selectedIndexChanged);
             // 
             // tp1
             // 
-            this.tp1.Location = new System.Drawing.Point(4, 39);
+            resources.ApplyResources(this.tp1, "tp1");
             this.tp1.Name = "tp1";
-            this.tp1.Padding = new System.Windows.Forms.Padding(3);
-            this.tp1.Size = new System.Drawing.Size(549, 344);
-            this.tp1.TabIndex = 0;
-            this.tp1.Text = "new file";
             this.tp1.UseVisualStyleBackColor = true;
             // 
             // tpPlus
             // 
-            this.tpPlus.Location = new System.Drawing.Point(4, 39);
+            resources.ApplyResources(this.tpPlus, "tpPlus");
             this.tpPlus.Name = "tpPlus";
-            this.tpPlus.Padding = new System.Windows.Forms.Padding(3);
-            this.tpPlus.Size = new System.Drawing.Size(549, 344);
-            this.tpPlus.TabIndex = 1;
-            this.tpPlus.Text = "+";
+            // 
+            // toolStripButton1
+            // 
+            resources.ApplyResources(this.toolStripButton1, "toolStripButton1");
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Name = "toolStripButton1";
             // 
             // FrmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(557, 440);
             this.Controls.Add(this.tcMain);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.msMain);
             this.MainMenuStrip = this.msMain;
             this.Name = "FrmMain";
-            this.Text = "MyOwnTextEditor";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.myOwnForm_Closing);
             this.msMain.ResumeLayout(false);
             this.msMain.PerformLayout();

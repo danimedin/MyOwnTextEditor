@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
+using System.Globalization;
+using System.Resources;
 
 namespace MyOwnTextEditor
 {
@@ -17,7 +20,11 @@ namespace MyOwnTextEditor
        
         public FrmMain()
         {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("es-ES");
+            // Sets the UI culture to French (France)
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("es-ES");
             InitializeComponent();
+         
             customTextRichBoxes = new List<CustomRichTextBox>();
            
 
@@ -322,12 +329,16 @@ namespace MyOwnTextEditor
         }
         private DialogResult showSaveQuestion(string fileName)
         {
+            ResourceManager rm = new ResourceManager("MyOwnTextEditor.strings",
+                                         typeof(FrmMain).Assembly);
+
             return MessageBox.Show(
-                   "Do you want to save changes to the document "
-                   + fileName,
-                   "Do you want to save the document",
-                   MessageBoxButtons.YesNoCancel,
-                   MessageBoxIcon.Exclamation);
+                    rm.GetString("clave"));
+                   //"Do you want to save changes to the document "
+                   //+ fileName,
+                   //"Do you want to save the document",
+                   //MessageBoxButtons.YesNoCancel,
+                   //MessageBoxIcon.Exclamation);
         }
 
         private void tsbNew_Click(object sender, EventArgs e)
@@ -456,19 +467,10 @@ namespace MyOwnTextEditor
             this.tsmWindow.Checked = false;
             this.tsmTabbed.Enabled = false;
             this.tsmTabbed.Checked = true;
-            //// TabControl tabControl = new TabControl();
+          
+         
 
-            //    tabControl.Location = new Point(0, 51);
-            //    tabControl.Size = new Size(557, 387);
-            //    tabControl.ItemSize = new Size(68, 35);
-            //    tabControl.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
-
-
-            // this.Controls.Add(tabControl);
-            //tabControl.SelectedIndexChanged += this.tcMain_selectedIndexChanged;
-            TabControl tabControl = this.tcMain;
-            //this.tcMain = tabControl;
-            tabControl.Visible = true;
+            tcMain.Visible = true;
 
             foreach (Form form in this.MdiChildren)
             {
@@ -497,5 +499,7 @@ namespace MyOwnTextEditor
             tcMain.TabPages.Add(tpPlus);
             this.IsMdiContainer = false;
         }
+
+ 
     }
 }
