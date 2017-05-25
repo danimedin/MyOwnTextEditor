@@ -66,6 +66,9 @@
             this.tp1 = new System.Windows.Forms.TabPage();
             this.tpPlus = new System.Windows.Forms.TabPage();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.tsmLanguague = new System.Windows.Forms.ToolStripMenuItem();
+            this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.spanishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tcMain.SuspendLayout();
@@ -73,18 +76,18 @@
             // 
             // msMain
             // 
-            resources.ApplyResources(this.msMain, "msMain");
             this.msMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiFile,
             this.editToolStripMenuItem,
             this.tsmiSeach,
             this.tsmView,
+            this.tsmLanguague,
             this.tsmiQuestion});
+            resources.ApplyResources(this.msMain, "msMain");
             this.msMain.Name = "msMain";
             // 
             // tsmiFile
             // 
-            resources.ApplyResources(this.tsmiFile, "tsmiFile");
             this.tsmiFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiNew,
             this.tsmiOpen,
@@ -92,12 +95,13 @@
             this.tsmiSaveAs,
             this.tsmiExit});
             this.tsmiFile.Name = "tsmiFile";
+            resources.ApplyResources(this.tsmiFile, "tsmiFile");
             // 
             // tsmiNew
             // 
-            resources.ApplyResources(this.tsmiNew, "tsmiNew");
             this.tsmiNew.Image = global::MyOwnTextEditor.icons._new;
             this.tsmiNew.Name = "tsmiNew";
+            resources.ApplyResources(this.tsmiNew, "tsmiNew");
             this.tsmiNew.Click += new System.EventHandler(this.tsmiNew_Click);
             // 
             // tsmiOpen
@@ -114,8 +118,8 @@
             // 
             // tsmiSaveAs
             // 
-            resources.ApplyResources(this.tsmiSaveAs, "tsmiSaveAs");
             this.tsmiSaveAs.Name = "tsmiSaveAs";
+            resources.ApplyResources(this.tsmiSaveAs, "tsmiSaveAs");
             this.tsmiSaveAs.Click += new System.EventHandler(this.tsmiSaveAs_Click);
             // 
             // tsmiExit
@@ -126,7 +130,6 @@
             // 
             // editToolStripMenuItem
             // 
-            resources.ApplyResources(this.editToolStripMenuItem, "editToolStripMenuItem");
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiUndo,
             this.tsmiDo,
@@ -135,99 +138,99 @@
             this.tsmiCopy,
             this.tsmiPaste});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            resources.ApplyResources(this.editToolStripMenuItem, "editToolStripMenuItem");
             // 
             // tsmiUndo
             // 
-            resources.ApplyResources(this.tsmiUndo, "tsmiUndo");
             this.tsmiUndo.Image = global::MyOwnTextEditor.icons.undo;
             this.tsmiUndo.Name = "tsmiUndo";
+            resources.ApplyResources(this.tsmiUndo, "tsmiUndo");
             // 
             // tsmiDo
             // 
-            resources.ApplyResources(this.tsmiDo, "tsmiDo");
             this.tsmiDo.Image = global::MyOwnTextEditor.icons.redo;
             this.tsmiDo.Name = "tsmiDo";
+            resources.ApplyResources(this.tsmiDo, "tsmiDo");
             // 
             // toolStripSeparator1
             // 
-            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
             this.toolStripSeparator1.Name = "toolStripSeparator1";
+            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
             // 
             // tsmiCut
             // 
-            resources.ApplyResources(this.tsmiCut, "tsmiCut");
             this.tsmiCut.Image = global::MyOwnTextEditor.icons.Cut;
             this.tsmiCut.Name = "tsmiCut";
+            resources.ApplyResources(this.tsmiCut, "tsmiCut");
             // 
             // tsmiCopy
             // 
-            resources.ApplyResources(this.tsmiCopy, "tsmiCopy");
             this.tsmiCopy.Image = global::MyOwnTextEditor.icons.copy;
             this.tsmiCopy.Name = "tsmiCopy";
+            resources.ApplyResources(this.tsmiCopy, "tsmiCopy");
             // 
             // tsmiPaste
             // 
-            resources.ApplyResources(this.tsmiPaste, "tsmiPaste");
             this.tsmiPaste.Image = global::MyOwnTextEditor.icons.paste;
             this.tsmiPaste.Name = "tsmiPaste";
+            resources.ApplyResources(this.tsmiPaste, "tsmiPaste");
             // 
             // tsmiSeach
             // 
-            resources.ApplyResources(this.tsmiSeach, "tsmiSeach");
             this.tsmiSeach.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiFind,
             this.tsmiReplace});
             this.tsmiSeach.Name = "tsmiSeach";
+            resources.ApplyResources(this.tsmiSeach, "tsmiSeach");
             // 
             // tsmiFind
             // 
-            resources.ApplyResources(this.tsmiFind, "tsmiFind");
             this.tsmiFind.Image = global::MyOwnTextEditor.icons.find;
             this.tsmiFind.Name = "tsmiFind";
+            resources.ApplyResources(this.tsmiFind, "tsmiFind");
             this.tsmiFind.Click += new System.EventHandler(this.tsmiFind_Click);
             // 
             // tsmiReplace
             // 
-            resources.ApplyResources(this.tsmiReplace, "tsmiReplace");
             this.tsmiReplace.Name = "tsmiReplace";
+            resources.ApplyResources(this.tsmiReplace, "tsmiReplace");
             // 
             // tsmView
             // 
-            resources.ApplyResources(this.tsmView, "tsmView");
             this.tsmView.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmTabbed,
             this.tsmWindow});
             this.tsmView.Name = "tsmView";
+            resources.ApplyResources(this.tsmView, "tsmView");
             // 
             // tsmTabbed
             // 
-            resources.ApplyResources(this.tsmTabbed, "tsmTabbed");
             this.tsmTabbed.Checked = true;
             this.tsmTabbed.CheckState = System.Windows.Forms.CheckState.Checked;
+            resources.ApplyResources(this.tsmTabbed, "tsmTabbed");
             this.tsmTabbed.Name = "tsmTabbed";
             this.tsmTabbed.Click += new System.EventHandler(this.tsmTabbed_Click);
             // 
             // tsmWindow
             // 
-            resources.ApplyResources(this.tsmWindow, "tsmWindow");
             this.tsmWindow.Name = "tsmWindow";
+            resources.ApplyResources(this.tsmWindow, "tsmWindow");
             this.tsmWindow.Click += new System.EventHandler(this.tsmWindow_Click);
             // 
             // tsmiQuestion
             // 
-            resources.ApplyResources(this.tsmiQuestion, "tsmiQuestion");
             this.tsmiQuestion.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiAbout});
             this.tsmiQuestion.Name = "tsmiQuestion";
+            resources.ApplyResources(this.tsmiQuestion, "tsmiQuestion");
             // 
             // tsmiAbout
             // 
-            resources.ApplyResources(this.tsmiAbout, "tsmiAbout");
             this.tsmiAbout.Name = "tsmiAbout";
+            resources.ApplyResources(this.tsmiAbout, "tsmiAbout");
             // 
             // toolStrip1
             // 
-            resources.ApplyResources(this.toolStrip1, "toolStrip1");
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbNew,
             this.tsbOpen,
@@ -239,75 +242,76 @@
             this.toolStripSeparator3,
             this.tsbUndo,
             this.tsbRedo});
+            resources.ApplyResources(this.toolStrip1, "toolStrip1");
             this.toolStrip1.Name = "toolStrip1";
             // 
             // tsbNew
             // 
-            resources.ApplyResources(this.tsbNew, "tsbNew");
             this.tsbNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsbNew.Image = global::MyOwnTextEditor.icons._new;
+            resources.ApplyResources(this.tsbNew, "tsbNew");
             this.tsbNew.Name = "tsbNew";
             this.tsbNew.Click += new System.EventHandler(this.tsbNew_Click);
             // 
             // tsbOpen
             // 
-            resources.ApplyResources(this.tsbOpen, "tsbOpen");
             this.tsbOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsbOpen.Image = global::MyOwnTextEditor.icons.open;
+            resources.ApplyResources(this.tsbOpen, "tsbOpen");
             this.tsbOpen.Name = "tsbOpen";
             this.tsbOpen.Click += new System.EventHandler(this.tsbOpen_Click);
             // 
             // tsbSave
             // 
-            resources.ApplyResources(this.tsbSave, "tsbSave");
             this.tsbSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsbSave.Image = global::MyOwnTextEditor.icons.save;
+            resources.ApplyResources(this.tsbSave, "tsbSave");
             this.tsbSave.Name = "tsbSave";
             this.tsbSave.Click += new System.EventHandler(this.tsbSave_Click);
             // 
             // toolStripSeparator2
             // 
-            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
             this.toolStripSeparator2.Name = "toolStripSeparator2";
+            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
             // 
             // tsbCut
             // 
-            resources.ApplyResources(this.tsbCut, "tsbCut");
             this.tsbCut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsbCut.Image = global::MyOwnTextEditor.icons.Cut;
+            resources.ApplyResources(this.tsbCut, "tsbCut");
             this.tsbCut.Name = "tsbCut";
             // 
             // tsbCopy
             // 
-            resources.ApplyResources(this.tsbCopy, "tsbCopy");
             this.tsbCopy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsbCopy.Image = global::MyOwnTextEditor.icons.copy;
+            resources.ApplyResources(this.tsbCopy, "tsbCopy");
             this.tsbCopy.Name = "tsbCopy";
             // 
             // tsbPaste
             // 
-            resources.ApplyResources(this.tsbPaste, "tsbPaste");
             this.tsbPaste.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsbPaste.Image = global::MyOwnTextEditor.icons.paste;
+            resources.ApplyResources(this.tsbPaste, "tsbPaste");
             this.tsbPaste.Name = "tsbPaste";
             // 
             // toolStripSeparator3
             // 
-            resources.ApplyResources(this.toolStripSeparator3, "toolStripSeparator3");
             this.toolStripSeparator3.Name = "toolStripSeparator3";
+            resources.ApplyResources(this.toolStripSeparator3, "toolStripSeparator3");
             // 
             // tsbUndo
             // 
-            resources.ApplyResources(this.tsbUndo, "tsbUndo");
             this.tsbUndo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsbUndo.Image = global::MyOwnTextEditor.icons.undo;
+            resources.ApplyResources(this.tsbUndo, "tsbUndo");
             this.tsbUndo.Name = "tsbUndo";
             // 
             // tsbRedo
             // 
-            resources.ApplyResources(this.tsbRedo, "tsbRedo");
             this.tsbRedo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsbRedo.Image = global::MyOwnTextEditor.icons.redo;
+            resources.ApplyResources(this.tsbRedo, "tsbRedo");
             this.tsbRedo.Name = "tsbRedo";
             // 
             // tcMain
@@ -332,9 +336,29 @@
             // 
             // toolStripButton1
             // 
-            resources.ApplyResources(this.toolStripButton1, "toolStripButton1");
             this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.toolStripButton1, "toolStripButton1");
             this.toolStripButton1.Name = "toolStripButton1";
+            // 
+            // tsmLanguague
+            // 
+            this.tsmLanguague.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.englishToolStripMenuItem,
+            this.spanishToolStripMenuItem});
+            this.tsmLanguague.Name = "tsmLanguague";
+            resources.ApplyResources(this.tsmLanguague, "tsmLanguague");
+            // 
+            // englishToolStripMenuItem
+            // 
+            this.englishToolStripMenuItem.Name = "englishToolStripMenuItem";
+            resources.ApplyResources(this.englishToolStripMenuItem, "englishToolStripMenuItem");
+            this.englishToolStripMenuItem.Click += new System.EventHandler(this.englishToolStripMenuItem_Click);
+            // 
+            // spanishToolStripMenuItem
+            // 
+            this.spanishToolStripMenuItem.Name = "spanishToolStripMenuItem";
+            resources.ApplyResources(this.spanishToolStripMenuItem, "spanishToolStripMenuItem");
+            this.spanishToolStripMenuItem.Click += new System.EventHandler(this.spanishToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -395,6 +419,9 @@
         private System.Windows.Forms.ToolStripMenuItem tsmView;
         private System.Windows.Forms.ToolStripMenuItem tsmWindow;
         public System.Windows.Forms.ToolStripMenuItem tsmTabbed;
+        private System.Windows.Forms.ToolStripMenuItem tsmLanguague;
+        private System.Windows.Forms.ToolStripMenuItem englishToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem spanishToolStripMenuItem;
     }
 }
 

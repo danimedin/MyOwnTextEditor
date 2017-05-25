@@ -333,12 +333,12 @@ namespace MyOwnTextEditor
                                          typeof(FrmMain).Assembly);
 
             return MessageBox.Show(
-                    rm.GetString("clave"));
-                   //"Do you want to save changes to the document "
-                   //+ fileName,
-                   //"Do you want to save the document",
-                   //MessageBoxButtons.YesNoCancel,
-                   //MessageBoxIcon.Exclamation);
+                    rm.GetString("saveDocument")                     
+                   + fileName
+                   + rm.GetString("questionSimbol"),
+                   rm.GetString("saveDocumentCaption"),
+                    MessageBoxButtons.YesNoCancel,
+                   MessageBoxIcon.Exclamation);
         }
 
         private void tsbNew_Click(object sender, EventArgs e)
@@ -500,6 +500,71 @@ namespace MyOwnTextEditor
             this.IsMdiContainer = false;
         }
 
- 
+        private void englishToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.changeCulture("en-EN");
+
+        }
+
+        private void spanishToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.changeCulture("es-ES");
+        }
+        private void changeCulture(string culture) {
+            bool isMDIMode = this.tsmWindow.Checked;
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(culture);
+            this.Controls.Clear();
+            this.FormClosing -= myOwnForm_Closing;
+            this.InitializeComponent();
+            restoreState(isMDIMode);
+        }
+
+        private void restoreState(bool isMDIMode) {
+            if (!isMDIMode) { 
+            tcMain.TabPages.Clear();
+            foreach (CustomRichTextBox richTextBox in this.customTextRichBoxes)
+            {
+                TabPage tabPage = new TabPage();
+                tabPage.Controls.Add(richTextBox);
+                tcMain.TabPages.Add(tabPage);
+                if (richTextBox.Content.FileName == string.Empty)
+                {
+                    tabPage.Text = "new File";
+                }
+                else {
+                    tabPage.Text = richTextBox.Content.FileName;
+                }
+            }
+            tpPlus = new TabPage();
+            tpPlus.Text = "+";
+            tcMain.TabPages.Add(tpPlus);
+            }
+            else
+            {
+                this.IsMdiContainer = true;
+                this.tsmWindow.Enabled = false;
+                this.tsmWindow.Checked = true;
+                this.tsmTabbed.Enabled = true;
+                this.tsmTabbed.Checked = false;
+                this.IsMdiContainer = true;
+                foreach (CustomRichTextBox richTextBox in this.customTextRichBoxes)
+                {
+                    Form form = new Form();
+                    form.Controls.Add(richTextBox);
+                    form.MdiParent = this;
+                    if (richTextBox.Content.FileName == string.Empty)
+                    {
+                        form.Text = "new File";
+                    }
+                    else
+                    {
+                        form.Text = richTextBox.Content.FileName;
+                    }
+                    form.Show();
+                }
+                this.tcMain.Controls.Clear();
+                this.tcMain.Visible = false;
+            }
+        }
     }
 }

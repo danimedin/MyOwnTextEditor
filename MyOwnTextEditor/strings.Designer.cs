@@ -61,11 +61,29 @@ namespace MyOwnTextEditor {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to HELLO WORLD.
+        ///   Looks up a localized string similar to ?.
         /// </summary>
-        internal static string clave {
+        internal static string questionSimbol {
             get {
-                return ResourceManager.GetString("clave", resourceCulture);
+                return ResourceManager.GetString("questionSimbol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to save changes to the document.
+        /// </summary>
+        internal static string saveDocument {
+            get {
+                return ResourceManager.GetString("saveDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to save the document.
+        /// </summary>
+        internal static string saveDocumentCaption {
+            get {
+                return ResourceManager.GetString("saveDocumentCaption", resourceCulture);
             }
         }
     }

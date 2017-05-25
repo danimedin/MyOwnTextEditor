@@ -117,7 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="clave" xml:space="preserve">
-    <value>HOLA MUNDO</value>
+  <data name="questionSimbol" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="saveDocument" xml:space="preserve">
+    <value>Quiere guardar los cambios en el documento </value>
+  </data>
+  <data name="saveDocumentCaption" xml:space="preserve">
+    <value>Guardar cambios</value>
   </data>
 </root>
